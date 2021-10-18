@@ -1,0 +1,5 @@
+# Platform specific
+.DS_Store
+
+# IDE's
+.idea
