@@ -1,0 +1,81 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1" />
+        <link href="https://cdn.ampproject.org/amp-story-player-v0.css" rel="stylesheet" type="text/css" />
+        <title>amp-story-player</title>
+    </head>
+    <body>
+        <style>
+            html,
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+            .hidden {
+                display: none !important;
+            }
+        </style>
+
+        <button>Open story player</button>
+        <script async id="AMPScript" src="https://cdn.ampproject.org/amp-story-player-v0.js"></script>
+
+        <script>
+                var player;
+                var openButton = document.body.querySelector('button');
+
+                function handleOpenPlayerButtonClick() {
+                    document.querySelector('button').addEventListener('click', function () {
+                        player.classList.remove('hidden');
+                        openButton.classList.add('hidden');
+                    });
+                }
+
+                function createStoryPlayer() {
+                    // create player script element
+                    player = document.createElement('amp-story-player');
+                    new AmpStoryPlayer(window, player);
+
+                    // hide by default
+                    player.classList.add('hidden');
+
+                    // add AMP story player configuration
+                    player.insertAdjacentHTML(
+                        'afterbegin',
+                        '<script type="application/json">{"controls": [{"name": "close","position": "start"}]}<\/script>'
+                    );
+
+                    // render & load
+                    document.body.appendChild(player);
+                    player.load();
+
+                    // when players ready, add story from blob url
+                    player.onPlayerReady = function () {
+                        player.add([
+                            {
+                                href:'story.html'
+                            }
+                        ]);
+                    }
+
+                    if (player.isReady) {
+                        player.onPlayerReady();
+                    } else {
+                        player.onReadyEvtListener = player.addEventListener('ready', player.onPlayerReady);
+                    }
+
+                    // on close, hide the player and show banner again
+                    player.addEventListener('amp-story-player-close', function () {
+                        player.classList.add('hidden');
+                        openButton.classList.remove('hidden');
+                    });
+                }
+
+                // create story player after the script has finished loading
+                document.body.querySelector('#AMPScript').addEventListener('load', function() {
+                    createStoryPlayer();
+                    handleOpenPlayerButtonClick();
+                });
+        </script>
+</body>
+</html>
