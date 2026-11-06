@@ -1,8 +1,20 @@
 {
+  "meta": {
+    "title": "Jane Doe",
+    "description": "A short description of this site."
+  },
   "name": "Jane Doe",
   "tagline": "Writes software and tends a garden.",
+  "menu": {
+    "home": "Home"
+  },
   "socialLinks": {
     "github": "GitHub",
     "linkedin": "LinkedIn"
-  }
+  },
+  "ui": {
+    "theme": "Toggle light and dark mode",
+    "language": "Language"
+  },
+  "footer": "Made with this template."
 }

@@ -1,8 +1,20 @@
 {
+  "meta": {
+    "title": "Jane Doe",
+    "description": "Krátky popis tejto stránky."
+  },
   "name": "Jane Doe",
   "tagline": "Píše softvér a stará sa o záhradu.",
+  "menu": {
+    "home": "Domov"
+  },
   "socialLinks": {
     "github": "GitHub",
     "linkedin": "LinkedIn"
-  }
+  },
+  "ui": {
+    "theme": "Prepnúť svetlý a tmavý režim",
+    "language": "Jazyk"
+  },
+  "footer": "Vytvorené z tejto šablóny."
 }

@@ -1,0 +1,55 @@
+---
+// The page shell: <head> (SEO, language alternates), top bar, footer. Pages put their content in the slot.
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import { langs, messages, site } from "../lib/content";
+
+interface Props {
+  lang: string;
+  path?: string; // page path inside a language, e.g. "" or "projects/" (used for the language switcher)
+  title?: string;
+  description?: string;
+}
+const { lang, path = "", title, description } = Astro.props;
+const t = messages[lang];
+const origin = Astro.site ? Astro.site.origin : "";
+const pageTitle = title ?? t.meta?.title ?? t.name;
+const pageDescription = description ?? t.meta?.description ?? "";
+const theme = site.defaultTheme && site.defaultTheme !== "system" ? site.defaultTheme : undefined;
+---
+
+<!doctype html>
+<html lang={lang} data-theme={theme}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={`${origin}/${lang}/${path}`} />
+    {langs.map((l) => <link rel="alternate" hreflang={l} href={`${origin}/${l}/${path}`} />)}
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <!-- apply the saved theme before first paint (no flash) -->
+    <script is:inline>
+      try { var th = localStorage.getItem("theme"); if (th) document.documentElement.dataset.theme = th; } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <Nav lang={lang} path={path} />
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <p>{new Date().getFullYear()} · {t.footer}</p>
+    </footer>
+    <script>
+      // theme toggle: flips between light and dark and remembers the choice
+      document.getElementById("theme")?.addEventListener("click", () => {
+        const root = document.documentElement;
+        const dark = (root.dataset.theme ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) === "dark";
+        root.dataset.theme = dark ? "light" : "dark";
+        try { localStorage.setItem("theme", root.dataset.theme); } catch {}
+      });
+    </script>
+  </body>
+</html>

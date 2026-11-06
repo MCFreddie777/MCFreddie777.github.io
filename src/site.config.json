@@ -1,0 +1,9 @@
+{
+  "menu": [
+    {
+      "id": "home",
+      "href": "/"
+    }
+  ],
+  "defaultTheme": "system"
+}

@@ -1,0 +1,37 @@
+---
+// Top bar: site name, menu (src/site.config.json -> menu), language switcher, theme toggle.
+// Menu labels come from messages: menu.<id>. Hrefs starting with "/" get the language prefix.
+import { isExternal, langs, localHref, messages, site } from "../lib/content";
+const { lang, path = "" } = Astro.props as { lang: string; path?: string };
+const t = messages[lang];
+const here = `/${lang}/${path}`;
+---
+
+<header class="bar">
+  <a class="brand" href={`/${lang}/`}>{t.name}</a>
+  <nav aria-label="Main">
+    {
+      (site.menu ?? []).map((item: any) => {
+        const href = localHref(lang, item.href);
+        const external = isExternal(item.href);
+        return (
+          <a href={href} aria-current={href === here ? "page" : undefined} target={external ? "_blank" : undefined} rel={external ? "noopener" : undefined}>
+            {t.menu?.[item.id] ?? item.id}
+          </a>
+        );
+      })
+    }
+  </nav>
+  <div class="tools">
+    {
+      langs.length > 1 && (
+        <div class="lang" role="group" aria-label={t.ui?.language}>
+          {langs.map((l) => (
+            <a href={`/${l}/${path}`} hreflang={l} lang={l} aria-current={l === lang ? "true" : undefined}>{l.toUpperCase()}</a>
+          ))}
+        </div>
+      )
+    }
+    <button id="theme" type="button" aria-label={t.ui?.theme}>◐</button>
+  </div>
+</header>

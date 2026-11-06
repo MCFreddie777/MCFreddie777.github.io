@@ -1,0 +1,27 @@
+/* Neutral starter styles. Replace freely: nothing else in the template depends on them.
+   Colours are CSS variables: light by default, dark via the OS setting or data-theme="dark". */
+:root {
+  --bg: #ffffff; --fg: #1f2328; --muted: #59636e; --line: #d1d9e0; --accent: #0969da;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0d1117; --fg: #e6edf3; --muted: #8b949e; --line: #30363d; --accent: #4493f8; color-scheme: dark; }
+}
+[data-theme="dark"] { --bg: #0d1117; --fg: #e6edf3; --muted: #8b949e; --line: #30363d; --accent: #4493f8; color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
+a { color: var(--accent); }
+main { max-width: 44rem; margin: 0 auto; padding: 2rem 1rem; }
+main section { margin: 0 0 2.5rem; }
+h1, h2 { line-height: 1.2; }
+footer { max-width: 44rem; margin: 0 auto; padding: 2rem 1rem; color: var(--muted); font-size: .9rem; }
+
+.bar { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; max-width: 44rem; margin: 0 auto; padding: 1rem; border-bottom: 1px solid var(--line); }
+.bar nav { display: flex; gap: 1rem; margin-right: auto; }
+.bar .brand { font-weight: 700; color: var(--fg); text-decoration: none; }
+.bar nav a[aria-current="page"] { color: var(--fg); }
+.tools { display: flex; gap: .5rem; align-items: center; }
+.lang a { margin-right: .4rem; font-size: .85rem; text-decoration: none; }
+.lang a[aria-current="true"] { font-weight: 700; color: var(--fg); }
+#theme { font: inherit; background: none; color: var(--fg); border: 1px solid var(--line); border-radius: 6px; padding: .1rem .5rem; cursor: pointer; }

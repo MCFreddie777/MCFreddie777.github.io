@@ -3,9 +3,13 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "build:readme": "node scripts/build-readme.mjs"
   },
   "devDependencies": {
+    "astro": "^5.0.0",
     "handlebars": "^4.7.8"
   }
 }
