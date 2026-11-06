@@ -1,37 +1,47 @@
 ---
-// Top bar: site name, menu (src/site.config.json -> menu), language switcher, theme toggle.
+// Top bar: brand, menu links (src/site.config.json -> menu), language switcher, theme toggle.
 // Menu labels come from messages: menu.<id>. Hrefs starting with "/" get the language prefix.
-import { data, isExternal, langs, localHref, messages, site } from "../lib/content";
+import { Icon } from "astro-icon/components";
+import { isExternal, langs, localHref, messages, site } from "../lib/content";
 const { lang, path = "" } = Astro.props as { lang: string; path?: string };
 const t = messages[lang];
 const here = `/${lang}/${path}`;
 ---
 
-<header class="bar">
-  <a class="brand" href={`/${lang}/`}>{data.name}</a>
-  <nav aria-label="Main">
-    {
-      (site.menu ?? []).map((item: any) => {
-        const href = localHref(lang, item.href);
-        const external = isExternal(item.href);
-        return (
-          <a href={href} aria-current={href === here ? "page" : undefined} target={external ? "_blank" : undefined} rel={external ? "noopener" : undefined}>
-            {t.menu?.[item.id] ?? item.id}
-          </a>
-        );
-      })
-    }
-  </nav>
-  <div class="tools">
-    {
-      langs.length > 1 && (
-        <div class="lang" role="group" aria-label={t.ui?.language}>
-          {langs.map((l) => (
-            <a href={`/${l}/${path}`} hreflang={l} lang={l} aria-current={l === lang ? "true" : undefined}>{l.toUpperCase()}</a>
-          ))}
-        </div>
-      )
-    }
-    <button id="theme" type="button" aria-label={t.ui?.theme}>◐</button>
+<header id="top">
+  <div id="prog"></div>
+  <a class="brand" href={`/${lang}/`}>{site.brand}</a>
+  <button id="burger" type="button" aria-label={t.ui.menu} aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+  <div id="menu">
+    <nav aria-label="Main">
+      {
+        site.menu.map((item: any) => {
+          const href = localHref(lang, item.href);
+          const external = isExternal(item.href);
+          return (
+            <a href={href} aria-current={href === here ? "page" : undefined} target={external ? "_blank" : undefined} rel={external ? "noopener" : undefined}>
+              {t.menu?.[item.id] ?? item.id}{external && <Icon name="lucide:arrow-up-right" class="ico ext" />}
+            </a>
+          );
+        })
+      }
+    </nav>
+    <div class="tools">
+      {
+        langs.length > 1 && (
+          <div class="lang" role="group" aria-label={t.ui.language}>
+            {langs.map((l) => (
+              <a href={`/${l}/${path}`} hreflang={l} lang={l} aria-pressed={String(l === lang)} aria-current={l === lang ? "true" : undefined}>
+                {l.toUpperCase()}
+              </a>
+            ))}
+          </div>
+        )
+      }
+      <button id="theme" type="button" aria-label={t.ui.theme}>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"></path></svg>
+      </button>
+    </div>
   </div>
 </header>

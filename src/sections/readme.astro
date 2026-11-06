@@ -1,0 +1,12 @@
+---
+import Window from "../components/Window.astro";
+import { data, messages, mk, tr } from "../lib/content";
+const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
+const t = messages[lang];
+---
+
+<Window chrome cmd={tr(data, section.heading)}>
+  <p class="big" set:html={mk(t.intro1)} />
+  <p class="big" set:html={mk(t.intro2)} />
+  <p class="big" set:html={mk(t.intro3)} />
+</Window>

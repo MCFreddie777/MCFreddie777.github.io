@@ -1,0 +1,42 @@
+---
+// Big words that slide sideways while you scroll. The words are a plain list in messages.
+// A trailing * on a word links it to the footnote below the window.
+import Window from "../components/Window.astro";
+import { data, md, messages, tr } from "../lib/content";
+const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
+const t = messages[lang];
+// The words are dealt into three rows. Their look (colour, outline) is picked at random when the page is built:
+// the least-used look goes first, and a word never shares its colour with the one before it or the one above it.
+const looks = ["", "g", "p", "o", "og", "op"];
+const colour: Record<string, string> = { "": "ink", o: "ink", g: "green", og: "green", p: "pink", op: "pink" };
+const words = t.quests as string[];
+const used = new Map(looks.map((l) => [l, 0]));
+const picked: string[] = [];
+words.forEach((_, k) => {
+  const options = looks.filter((l) => colour[l] !== colour[picked[k - 1]] && colour[l] !== colour[picked[k - 3]]);
+  const least = Math.min(...options.map((l) => used.get(l)!));
+  const pool = options.filter((l) => used.get(l) === least);
+  const look = pool[Math.floor(Math.random() * pool.length)];
+  used.set(look, used.get(look)! + 1);
+  picked.push(look);
+});
+const rows = [0, 1, 2].map((i) => words.flatMap((text, k) => (k % 3 === i ? [{ text, look: picked[k] }] : [])));
+---
+
+<Window id="side-quests" cmd={tr(data, section.heading)}>
+  <div class="quests" id="quests">
+    {
+      rows.map((row) => (
+        <div class="row">
+          {row.map(({ text, look }) => (
+            <span class={`q ${look}`.trim()}>
+              {text.replace(/\*$/, "")}
+              {text.endsWith("*") && <sup>*</sup>}
+            </span>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</Window>
+<p class="fn"><b>*</b><Fragment set:html={md(t.footnote.replace(/^\*/, ""))} /></p>

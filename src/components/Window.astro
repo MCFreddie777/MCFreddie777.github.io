@@ -1,0 +1,13 @@
+---
+// One terminal-style window. `cmd` prints a typed "$ command" line at the top.
+// `chrome` shows the three window buttons (used on the first window only).
+const { id, cmd, chrome = false } = Astro.props as { id?: string; cmd?: string; chrome?: boolean };
+---
+
+<section class={`blk glowb${chrome ? " chrome" : ""}`} id={id}>
+  <div class="tb"><i></i><i></i><i></i></div>
+  <div class="bd">
+    {cmd && <p class="cmd" data-cmd={cmd}><span class="sig">$</span><span class="c">{cmd}</span></p>}
+    <slot />
+  </div>
+</section>

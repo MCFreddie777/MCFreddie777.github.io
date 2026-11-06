@@ -1,11 +1,27 @@
 ---
-// Section "hero": the name and tagline (messages: name, tagline).
-import { data, messages } from "../lib/content";
-const { lang } = Astro.props as { lang: string; section: Record<string, any> };
+// Name (typed, with a deliberate typo that corrects itself), role line, boot lines and the stickers.
+import { data, messages, tr } from "../lib/content";
+const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
 const t = messages[lang];
+const heading = tr(data, section.heading);
+const company = data.companyUrl ? `<a href="${data.companyUrl}">${data.company}</a>` : data.company;
 ---
 
 <section class="hero">
-  <h1>{data.name}</h1>
-  <p>{t.tagline}</p>
+  <p class="ps"><span class="d">$</span> <span id="who" data-text={heading}>{heading}</span></p>
+  <div class="namewrap">
+    <h1 id="name" aria-label={data.name}>
+      <span class="ghost" aria-hidden="true">{data.name}</span><span id="typed" data-wrong={section.nameTypo} data-right={data.name}>{data.name}</span><span class="caret" aria-hidden="true"></span>
+    </h1>
+    <div class="sticker note"><i class="tape"></i><span>{t.ears_note ?? t.ears.replace(" 🎧", "")}</span></div>
+  </div>
+  <p class="tag">
+    {data.role} <i>/</i> {t.role_pre} <mark set:html={company} />
+  </p>
+  <ul class="boot">
+    {t.boot.map((line: string) => <li><b>ok</b>{line}</li>)}
+  </ul>
+  <div class="stickers">
+    <div class="sticker tag-name" aria-hidden="true"><b>{t.hi_label}</b><span>{section.hiName}</span></div>
+  </div>
 </section>

@@ -1,5 +1,5 @@
 ---
-// One project, from an entry of the "projects" collection. The description is looked up in messages.
+// One project card, from an entry of the "projects" collection (src/content/projects/*.json).
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import { messages, tr } from "../lib/content";
@@ -8,7 +8,9 @@ const t = messages[lang];
 const p = project.data;
 ---
 
-<li>
-  {p.image && <Image src={p.image} alt="" width={64} height={64} />}
-  <a href={p.url}><strong>{p.name}</strong></a> · {tr(t, p.descriptionTranslationKey)}
-</li>
+<a class="card glowb" href={p.url}>
+  <h3>{p.name}</h3>
+  {p.image && <Image class="cover" src={p.image} alt="" width={96} height={96} />}
+  <p>{tr(t, p.descriptionTranslationKey)}</p>
+  <span class="go">{t.go}<Icon name="lucide:arrow-right" class="ico" /></span>
+</a>

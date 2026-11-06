@@ -1,0 +1,17 @@
+---
+// "Say hi" window: one big title and a button per entry in content/data.json -> socialLinks.
+// Button labels come from messages: socialLinks.<id>. The first one is the highlighted button.
+import Window from "../components/Window.astro";
+import { data, messages, tr } from "../lib/content";
+const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
+const t = messages[lang];
+---
+
+<Window id="contact" cmd={tr(data, section.heading)}>
+  <div class="contact">
+    <h2>{t.sayhi}</h2>
+    <div class="links">
+      {data.socialLinks.map((l: any, i: number) => <a class={`btn ${i === 0 ? "pri" : ""}`} href={l.href}>{l.label ?? l.id}</a>)}
+    </div>
+  </div>
+</Window>

@@ -1,7 +1,8 @@
 ---
-// The page shell: <head> (SEO, language alternates), top bar, footer. Pages put their content in the slot.
+// The page shell: <head>, top bar, scripts. Pages put their content in the slot.
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 import { data, defaultLang, langs, messages, site } from "../lib/content";
 
 interface Props {
@@ -12,23 +13,31 @@ interface Props {
 }
 const { lang, path = "", title, description } = Astro.props;
 const t = messages[lang];
-const origin = Astro.site ? Astro.site.origin : "";
 // SEO: text like the elevAIton landing page: messages seo_home_title and seo_home_description (both optional; the description defaults to intro1-3);
 // inner pages are "<title> | <name>".
 const pageTitle = title ? `${title.charAt(0).toLocaleUpperCase(lang) + title.slice(1)} | ${data.name}` : (t.seo_home_title ?? data.name);
 const intro = [t.intro1, t.intro2, t.intro3].filter(Boolean).join(" ").replace(/\*\*/g, "");
 const pageDescription = description ?? t.seo_home_description ?? intro;
-const theme = site.defaultTheme && site.defaultTheme !== "system" ? site.defaultTheme : undefined;
+const origin = Astro.site ? Astro.site.origin : "";
+const canonical = `${origin}/${lang}/${path}`;
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: data.name,
+  jobTitle: data.role,
+  url: origin,
+  sameAs: data.socialLinks.map((l: any) => l.href),
+};
 ---
 
 <!doctype html>
-<html lang={lang} data-theme={theme}>
+<html lang={lang} data-theme={site.defaultTheme ?? "dark"}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={pageDescription} />
-    <link rel="canonical" href={`${origin}/${lang}/${path}`} />
+    <link rel="canonical" href={canonical} />
     {langs.map((l) => <link rel="alternate" hreflang={l} href={`${origin}/${l}/${path}`} />)}
     <link rel="alternate" hreflang="x-default" href={`${origin}/${defaultLang}/${path}`} />
     <meta property="og:title" content={pageTitle} />
@@ -38,27 +47,29 @@ const theme = site.defaultTheme && site.defaultTheme !== "system" ? site.default
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=JetBrains+Mono:wght@400;700&family=Caveat:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
     <!-- apply the saved theme before first paint (no flash) -->
     <script is:inline>
       try { var th = localStorage.getItem("theme"); if (th) document.documentElement.dataset.theme = th; } catch (e) {}
     </script>
   </head>
   <body>
+    <div id="glow" aria-hidden="true"></div>
     <Nav lang={lang} path={path} />
     <main>
       <slot />
     </main>
-    <footer>
-      <p>{new Date().getFullYear()} · {t.footer}</p>
-    </footer>
+    <Footer lang={lang} />
     <script>
-      // theme toggle: flips between light and dark and remembers the choice
-      document.getElementById("theme")?.addEventListener("click", () => {
-        const root = document.documentElement;
-        const dark = (root.dataset.theme ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")) === "dark";
-        root.dataset.theme = dark ? "light" : "dark";
-        try { localStorage.setItem("theme", root.dataset.theme); } catch {}
-      });
+      import "../scripts/script";
     </script>
   </body>
 </html>

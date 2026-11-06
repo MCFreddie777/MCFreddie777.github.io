@@ -1,0 +1,29 @@
+---
+import Window from "../components/Window.astro";
+import { getCollection } from "astro:content";
+import { data, messages, tr } from "../lib/content";
+const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
+const t = messages[lang];
+const jobs = (await getCollection("career")).sort((a, b) => b.id.localeCompare(a.id));
+const month = (d: string) => {
+const date = new Date(`${d}-01`);
+return `${date.toLocaleDateString(lang, { month: "short" })} ${date.getFullYear()}`;
+};
+---
+
+<Window cmd={tr(data, section.heading)}>
+  <ol class="log">
+    {
+      jobs.map((job) => (
+        <li>
+          <span class="h">{job.data.hash}</span>
+          <div>
+            <h3>{tr(t, job.data.titleTranslationKey)}</h3>
+            <p class="d">{month(job.data.from)} – {job.data.to ? month(job.data.to) : t.ui.now} {!job.data.to && job.data.head && <b>(HEAD)</b>}</p>
+            <p>{tr(t, job.data.descriptionTranslationKey)}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</Window>

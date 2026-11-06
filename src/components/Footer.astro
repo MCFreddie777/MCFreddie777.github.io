@@ -1,0 +1,10 @@
+---
+// Footer: the year and the closing line.
+import { messages } from "../lib/content";
+const { lang } = Astro.props as { lang: string };
+const t = messages[lang];
+---
+
+<footer class="fine">
+  <p><span class="yr">{new Date().getFullYear()}</span> | Made with pink kitty ears, of course.</p>
+</footer>
