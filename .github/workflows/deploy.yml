@@ -20,6 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: withastro/action@v3
+        with:
+          package-manager: npm # no lockfile in the template; add package-lock.json and drop this line if you like
 
   deploy:
     needs: build
