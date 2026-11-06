@@ -1,0 +1,22 @@
+---
+// Section "projects": cards from src/content/projects/*.json.
+// Usage: { "type": "projects", "key": "projects", "featuredOnly": true }
+//   featuredOnly: show only entries with featured_on_landing_page and link to the all-projects page.
+//   messages: "projects": { "title": "...", "all": "All projects", "items": { "<name>": "description" } }
+import { getCollection } from "astro:content";
+import ProjectCard from "../components/ProjectCard.astro";
+import { messages, tr } from "../lib/content";
+const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
+const t = messages[lang];
+const block = tr(t, section.key ?? "projects");
+const all = (await getCollection("projects")).sort((a, b) => a.id.localeCompare(b.id));
+const projects = section.featuredOnly ? all.filter((p) => p.data.featured_on_landing_page) : all;
+---
+
+<section>
+  {block.title && <h2>{block.title}</h2>}
+  <ul>
+    {projects.map((p) => <ProjectCard project={p} lang={lang} />)}
+  </ul>
+  {section.featuredOnly && block.all && <p><a href={`/${lang}/projects/`}>{block.all} →</a></p>}
+</section>

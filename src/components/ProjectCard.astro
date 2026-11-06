@@ -1,0 +1,13 @@
+---
+// One project, from an entry of the "projects" collection. The description is looked up in messages.
+import { Image } from "astro:assets";
+import { messages, tr } from "../lib/content";
+const { project, lang } = Astro.props as { project: any; lang: string };
+const t = messages[lang];
+const p = project.data;
+---
+
+<li>
+  {p.image && <Image src={p.image} alt="" width={64} height={64} />}
+  <a href={p.url}><strong>{p.name}</strong></a> · {tr(t, p.descriptionTranslationKey)}
+</li>

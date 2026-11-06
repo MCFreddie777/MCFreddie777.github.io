@@ -6,7 +6,8 @@
   "name": "Jane Doe",
   "tagline": "Píše softvér a stará sa o záhradu.",
   "menu": {
-    "home": "Domov"
+    "home": "Domov",
+    "projects": "Projekty"
   },
   "socialLinks": {
     "github": "GitHub",
@@ -39,5 +40,14 @@
   },
   "contact": {
     "title": "Nájdete ma"
+  },
+  "projects": {
+    "title": "Projekty",
+    "all": "Všetky projekty",
+    "items": {
+      "sample-one": "Krátky popis prvého projektu.",
+      "sample-two": "Krátky popis druhého projektu.",
+      "sample-three": "Zobrazí sa len na stránke všetkých projektov."
+    }
   }
 }

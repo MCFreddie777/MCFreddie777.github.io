@@ -3,6 +3,10 @@
     {
       "id": "home",
       "href": "/"
+    },
+    {
+      "id": "projects",
+      "href": "/projects/"
     }
   ],
   "defaultTheme": "system"

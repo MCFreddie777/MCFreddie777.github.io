@@ -23,6 +23,11 @@
       "key": "interests"
     },
     {
+      "type": "projects",
+      "key": "projects",
+      "featuredOnly": true
+    },
+    {
       "type": "links",
       "key": "contact"
     }

@@ -6,7 +6,8 @@
   "name": "Jane Doe",
   "tagline": "Writes software and tends a garden.",
   "menu": {
-    "home": "Home"
+    "home": "Home",
+    "projects": "Projects"
   },
   "socialLinks": {
     "github": "GitHub",
@@ -39,5 +40,14 @@
   },
   "contact": {
     "title": "Find me"
+  },
+  "projects": {
+    "title": "Projects",
+    "all": "All projects",
+    "items": {
+      "sample-one": "A short description of the first project.",
+      "sample-two": "A short description of the second project.",
+      "sample-three": "Only shown on the all-projects page."
+    }
   }
 }
