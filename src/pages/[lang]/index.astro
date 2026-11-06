@@ -1,16 +1,22 @@
 ---
-// Home page. Starts with just the name and tagline; later commits turn this into a list of sections.
+// HOME PAGE. The sections are listed in content/data.json -> "sections", in order.
+// A section is { "type": "<file name in src/sections>", ...any options you like }. Each section file is an Astro
+// component that receives { lang, section }. To add a section: drop a file into src/sections/ and list it in data.json.
 import Base from "../../layouts/Base.astro";
-import { langs, messages } from "../../lib/content";
+import { data, langs } from "../../lib/content";
 
 export const getStaticPaths = () => langs.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as string;
-const t = messages[lang];
+
+const modules = import.meta.glob("../../sections/*.astro", { eager: true }) as Record<string, { default: any }>;
+const sections = ((data.sections ?? []) as Record<string, any>[])
+  .map((section) => ({ section, Component: modules[`../../sections/${section.type}.astro`]?.default }))
+  .filter(({ section, Component }) => {
+    if (!Component) console.warn(`No section file src/sections/${section.type}.astro (listed in content/data.json)`);
+    return Component;
+  });
 ---
 
 <Base lang={lang}>
-  <section>
-    <h1>{t.name}</h1>
-    <p>{t.tagline}</p>
-  </section>
+  {sections.map(({ section, Component }) => <Component lang={lang} section={section} />)}
 </Base>

@@ -1,0 +1,15 @@
+---
+// Section "links": the entries of content/data.json -> socialLinks. Labels come from messages: socialLinks.<id>.
+// Usage: { "type": "links", "key": "contact" }  ->  messages: "contact": { "title": "..." } (optional heading)
+import { data, messages, tr } from "../lib/content";
+const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
+const t = messages[lang];
+const block = section.key ? tr(t, section.key) : {};
+---
+
+<section>
+  {block.title && <h2>{block.title}</h2>}
+  <p>
+    {data.socialLinks.map((l: any, i: number) => <>{i > 0 && " · "}<a href={l.href}>{t.socialLinks?.[l.id] ?? l.id}</a></>)}
+  </p>
+</section>

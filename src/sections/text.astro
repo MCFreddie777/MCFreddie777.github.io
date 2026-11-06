@@ -1,0 +1,14 @@
+---
+// Section "text": a heading and paragraphs from messages.
+// Usage in content/data.json: { "type": "text", "key": "about" }  ->  messages: "about": { "title": "...", "body": ["...", "..."] }
+// "body" can be one string or a list of strings; **bold** and [links](url) work.
+import { messages, md, tr } from "../lib/content";
+const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
+const block = tr(messages[lang], section.key);
+const paragraphs: string[] = Array.isArray(block.body) ? block.body : [block.body];
+---
+
+<section>
+  {block.title && <h2>{block.title}</h2>}
+  {paragraphs.map((p) => <p set:html={md(p)} />)}
+</section>

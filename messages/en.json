@@ -16,5 +16,28 @@
     "theme": "Toggle light and dark mode",
     "language": "Language"
   },
-  "footer": "Made with this template."
+  "footer": "Made with this template.",
+  "about": {
+    "title": "About",
+    "body": [
+      "A first paragraph about **you**. Bold text and [links](https://example.com) work.",
+      "A second paragraph. Edit messages/en.json to change this."
+    ]
+  },
+  "interests": {
+    "title": "Interests",
+    "items": [
+      {
+        "title": "Gardening",
+        "text": "Tomatoes, mostly."
+      },
+      {
+        "title": "Open source",
+        "text": "Small fixes, now and then."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Find me"
+  }
 }

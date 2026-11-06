@@ -1,0 +1,14 @@
+---
+// Section "list": a heading and a list of items from messages.
+// Usage: { "type": "list", "key": "interests" }  ->  messages: "interests": { "title": "...", "items": [{ "title": "...", "text": "..." }] }
+import { messages, md, tr } from "../lib/content";
+const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
+const block = tr(messages[lang], section.key);
+---
+
+<section>
+  {block.title && <h2>{block.title}</h2>}
+  <ul>
+    {block.items.map((item: any) => <li><strong>{item.title}</strong>{item.text && <> · <span set:html={md(item.text)} /></>}</li>)}
+  </ul>
+</section>

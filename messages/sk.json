@@ -16,5 +16,28 @@
     "theme": "Prepnúť svetlý a tmavý režim",
     "language": "Jazyk"
   },
-  "footer": "Vytvorené z tejto šablóny."
+  "footer": "Vytvorené z tejto šablóny.",
+  "about": {
+    "title": "O mne",
+    "body": [
+      "Prvý odsek o **vás**. Tučné písmo a [odkazy](https://example.com) fungujú.",
+      "Druhý odsek. Zmeníte ho v messages/sk.json."
+    ]
+  },
+  "interests": {
+    "title": "Záujmy",
+    "items": [
+      {
+        "title": "Záhradkárčenie",
+        "text": "Najmä paradajky."
+      },
+      {
+        "title": "Open source",
+        "text": "Menšie opravy, občas."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Nájdete ma"
+  }
 }

@@ -9,5 +9,22 @@
       "id": "linkedin",
       "href": "https://www.linkedin.com/in/janedoe"
     }
+  ],
+  "sections": [
+    {
+      "type": "hero"
+    },
+    {
+      "type": "text",
+      "key": "about"
+    },
+    {
+      "type": "list",
+      "key": "interests"
+    },
+    {
+      "type": "links",
+      "key": "contact"
+    }
   ]
 }
