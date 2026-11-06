@@ -1,0 +1,11 @@
+{
+  "name": "personal-site-template",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build:readme": "node scripts/build-readme.mjs"
+  },
+  "devDependencies": {
+    "handlebars": "^4.7.8"
+  }
+}

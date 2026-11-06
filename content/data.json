@@ -1,0 +1,13 @@
+{
+  "siteUrl": "https://janedoe.github.io",
+  "socialLinks": [
+    {
+      "id": "github",
+      "href": "https://github.com/janedoe"
+    },
+    {
+      "id": "linkedin",
+      "href": "https://www.linkedin.com/in/janedoe"
+    }
+  ]
+}

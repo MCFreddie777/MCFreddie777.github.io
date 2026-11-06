@@ -1,5 +1,8 @@
-# Platform specific
+node_modules
+dist
+.astro
 .DS_Store
+dist-readme
 
-# IDE's
-.idea
+# private notes, never commit
+CLAUDE.local.md

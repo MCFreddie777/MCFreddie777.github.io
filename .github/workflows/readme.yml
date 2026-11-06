@@ -1,0 +1,48 @@
+name: Publish profile README
+
+# Generates README.md from content/ + messages/ and pushes it to the profile repo
+# (<owner>/<owner>, or the repo variable PROFILE_REPO if set).
+# Setup: repo Settings → Secrets → Actions → PROFILE_REPO_TOKEN
+#   = fine-grained PAT with "Contents: read and write" on the profile repo only.
+
+on:
+  push:
+    branches: [main]
+    paths: [content/**, messages/**, templates/**, src/content/**, scripts/**, .github/workflows/readme.yml]
+  schedule:
+    - cron: "0 6 * * 1" # weekly, refreshes fetched data (see templates/readme/context.mjs)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    env:
+      PROFILE_REPO: ${{ vars.PROFILE_REPO || format('{0}/{0}', github.repository_owner) }}
+    steps:
+      - name: Check token is configured
+        env:
+          TOKEN: ${{ secrets.PROFILE_REPO_TOKEN }}
+        run: '[ -n "$TOKEN" ] || { echo "::error::Add the PROFILE_REPO_TOKEN secret (see comment at top of this file)"; exit 1; }'
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run build:readme
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.PROFILE_REPO }}
+          token: ${{ secrets.PROFILE_REPO_TOKEN }}
+          path: profile
+      - name: Push README
+        working-directory: profile
+        run: |
+          rm -rf assets
+          cp -r ../dist-readme/. .
+          git config user.name "readme-bot"
+          git config user.email "readme-bot@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || (git commit -m "Update README from source repo" && git push)
