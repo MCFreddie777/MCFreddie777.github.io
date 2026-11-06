@@ -9,7 +9,11 @@
     "build:readme": "node scripts/build-readme.mjs"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.0",
     "astro": "^5.0.0",
-    "handlebars": "^4.7.8"
+    "astro-icon": "^1.1.5",
+    "gsap": "^3.12.5",
+    "handlebars": "^4.7.8",
+    "lenis": "^1.1.13"
   }
 }

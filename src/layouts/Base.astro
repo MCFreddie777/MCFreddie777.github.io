@@ -2,7 +2,7 @@
 // The page shell: <head> (SEO, language alternates), top bar, footer. Pages put their content in the slot.
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
-import { langs, messages, site } from "../lib/content";
+import { data, defaultLang, langs, messages, site } from "../lib/content";
 
 interface Props {
   lang: string;
@@ -13,8 +13,11 @@ interface Props {
 const { lang, path = "", title, description } = Astro.props;
 const t = messages[lang];
 const origin = Astro.site ? Astro.site.origin : "";
-const pageTitle = title ?? t.meta?.title ?? t.name;
-const pageDescription = description ?? t.meta?.description ?? "";
+// SEO: text like the elevAIton landing page: messages seo_home_title and seo_home_description (both optional; the description defaults to intro1-3);
+// inner pages are "<title> | <name>".
+const pageTitle = title ? `${title.charAt(0).toLocaleUpperCase(lang) + title.slice(1)} | ${data.name}` : (t.seo_home_title ?? data.name);
+const intro = [t.intro1, t.intro2, t.intro3].filter(Boolean).join(" ").replace(/\*\*/g, "");
+const pageDescription = description ?? t.seo_home_description ?? intro;
 const theme = site.defaultTheme && site.defaultTheme !== "system" ? site.defaultTheme : undefined;
 ---
 
@@ -27,8 +30,14 @@ const theme = site.defaultTheme && site.defaultTheme !== "system" ? site.default
     <meta name="description" content={pageDescription} />
     <link rel="canonical" href={`${origin}/${lang}/${path}`} />
     {langs.map((l) => <link rel="alternate" hreflang={l} href={`${origin}/${l}/${path}`} />)}
+    <link rel="alternate" hreflang="x-default" href={`${origin}/${defaultLang}/${path}`} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
+    <meta property="og:site_name" content={data.name} />
+    <meta property="og:locale" content={lang} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
     <!-- apply the saved theme before first paint (no flash) -->
     <script is:inline>
       try { var th = localStorage.getItem("theme"); if (th) document.documentElement.dataset.theme = th; } catch (e) {}

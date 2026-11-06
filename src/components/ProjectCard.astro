@@ -1,6 +1,7 @@
 ---
 // One project, from an entry of the "projects" collection. The description is looked up in messages.
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import { messages, tr } from "../lib/content";
 const { project, lang } = Astro.props as { project: any; lang: string };
 const t = messages[lang];

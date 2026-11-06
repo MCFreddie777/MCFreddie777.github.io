@@ -1,14 +1,14 @@
 ---
 // Top bar: site name, menu (src/site.config.json -> menu), language switcher, theme toggle.
 // Menu labels come from messages: menu.<id>. Hrefs starting with "/" get the language prefix.
-import { isExternal, langs, localHref, messages, site } from "../lib/content";
+import { data, isExternal, langs, localHref, messages, site } from "../lib/content";
 const { lang, path = "" } = Astro.props as { lang: string; path?: string };
 const t = messages[lang];
 const here = `/${lang}/${path}`;
 ---
 
 <header class="bar">
-  <a class="brand" href={`/${lang}/`}>{t.name}</a>
+  <a class="brand" href={`/${lang}/`}>{data.name}</a>
   <nav aria-label="Main">
     {
       (site.menu ?? []).map((item: any) => {

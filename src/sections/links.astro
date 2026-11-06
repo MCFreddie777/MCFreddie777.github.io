@@ -10,6 +10,6 @@ const block = section.key ? tr(t, section.key) : {};
 <section>
   {block.title && <h2>{block.title}</h2>}
   <p>
-    {data.socialLinks.map((l: any, i: number) => <>{i > 0 && " · "}<a href={l.href}>{t.socialLinks?.[l.id] ?? l.id}</a></>)}
+    {data.socialLinks.map((l: any, i: number) => <>{i > 0 && " · "}<a href={l.href}>{l.label ?? l.id}</a></>)}
   </p>
 </section>

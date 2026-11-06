@@ -1,35 +1,68 @@
 {
-  "siteUrl": "https://janedoe.github.io",
+  "siteUrl": "https://mcfreddie777.github.io",
+  "name": "František Gič",
+  "role": "Frontend Engineer",
+  "company": "elevAIton",
+  "companyUrl": "https://elevaiton.com",
   "socialLinks": [
     {
-      "id": "github",
-      "href": "https://github.com/janedoe"
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "href": "https://www.linkedin.com/in/frantisek-gic/"
     },
     {
-      "id": "linkedin",
-      "href": "https://www.linkedin.com/in/janedoe"
+      "id": "devto",
+      "label": "dev.to",
+      "href": "https://dev.to/frantisek_gic"
+    },
+    {
+      "id": "github",
+      "label": "GitHub",
+      "href": "https://github.com/MCFreddie777"
     }
   ],
+  "sectionHeadings": {
+    "whoami": "whoami",
+    "readme": "cat README.md",
+    "career": "git log --career",
+    "projects": "ls projects",
+    "projectsAll": "ls -la projects",
+    "quests": "cat sidequests.md",
+    "stack": "cat stack.txt",
+    "contact": "./contact.sh"
+  },
   "sections": [
     {
-      "type": "hero"
+      "type": "hero",
+      "heading": "sectionHeadings.whoami",
+      "nameTypo": "Frantisek Gic",
+      "hiName": "Feri"
     },
     {
-      "type": "text",
-      "key": "about"
+      "type": "readme",
+      "heading": "sectionHeadings.readme"
     },
     {
-      "type": "list",
-      "key": "interests"
+      "type": "career",
+      "heading": "sectionHeadings.career"
     },
     {
       "type": "projects",
       "key": "projects",
-      "featuredOnly": true
+      "featuredOnly": true,
+      "heading": "sectionHeadings.projects"
     },
     {
-      "type": "links",
-      "key": "contact"
+      "type": "quests",
+      "heading": "sectionHeadings.quests"
+    },
+    {
+      "type": "contact",
+      "heading": "sectionHeadings.contact"
+    },
+    {
+      "type": "egg",
+      "key": "egg"
     }
   ]
 }

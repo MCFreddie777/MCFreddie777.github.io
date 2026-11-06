@@ -1,53 +1,63 @@
 {
-  "meta": {
-    "title": "Jane Doe",
-    "description": "A short description of this site."
+  "boot": [
+    "loaded 6+ years of Angular...",
+    "specialty coffee: grinded, brewing...",
+    "headphones fitted with kitty ears..."
+  ],
+  "intro1": "I turn coffee into code.",
+  "intro2": "Coder by day, startup founder by night.",
+  "intro3": "I have a lot of hobbies and I give 120% to every one of them (when the ADHD kicks in).",
+  "ears": "psst: my headphones have pink ears. Yes, really. Let's hop on a call so you can see it with your own eyes.",
+  "projects": {
+    "all": "view more projects",
+    "items": {
+      "rpi-pwm-fan-control": "A Raspberry Pi that spins its fan only as fast as the temperature demands.",
+      "ckeditor5-code-block": "A code block feature for CKEditor 5."
+    }
   },
-  "name": "Jane Doe",
-  "tagline": "Writes software and tends a garden.",
+  "quests": [
+    "surfing",
+    "DJing",
+    "piano",
+    "PC games",
+    "3D printing",
+    "graphic design",
+    "surfskate",
+    "soldering stuff",
+    "and more*"
+  ],
+  "footnote": "*also: I helped students in my dorm wherever I could during my university studies, I'm growing personally at the [Nexteria Leadership Academy](https://nexteria.sk/), and I'm a cool uncle to my godsons.",
+  "sayhi": "Let's get in touch.",
+  "website": "Website",
+  "role_pre": "Co-Founder of",
+  "hi_label": "HI, I AM",
+  "go": "open on GitHub",
+  "career": {
+    "exponea-developer": {
+      "title": "Frontend Developer, Exponea",
+      "description": "Built and automated E2E testing using Cypress, significantly improving release confidence. Designed and implemented a testing pipeline from scratch. Decoupled test architecture into a standalone repository. Increased test coverage and contributed to overall product quality."
+    },
+    "bloomreach": {
+      "title": "Staff Frontend Engineer, Bloomreach",
+      "description": "Driving frontend architecture decisions in a large Angular codebase. Raising standards in code quality, testing strategy, and maintainability. Recognized for strong analytical thinking, ownership, and reliability. Actively improving team practices around testing, reviews, and delivery."
+    },
+    "elevaiton": {
+      "title": "Co-Founder, elevAIton",
+      "description": "Co-founder of an early-stage initiative focused on practical AI and automation solutions. Designing and building product foundations from zero to one. Exploring AI-driven workflows, automation, and developer-centric tooling. Combining engineering execution with product experimentation and validation."
+    }
+  },
   "menu": {
-    "home": "Home",
-    "projects": "Projects"
-  },
-  "socialLinks": {
-    "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "home": "home",
+    "projects": "projects",
+    "contact": "contact"
   },
   "ui": {
     "theme": "Toggle light and dark mode",
-    "language": "Language"
+    "menu": "Menu",
+    "language": "Language",
+    "now": "now"
   },
-  "footer": "Made with this template.",
-  "about": {
-    "title": "About",
-    "body": [
-      "A first paragraph about **you**. Bold text and [links](https://example.com) work.",
-      "A second paragraph. Edit messages/en.json to change this."
-    ]
-  },
-  "interests": {
-    "title": "Interests",
-    "items": [
-      {
-        "title": "Gardening",
-        "text": "Tomatoes, mostly."
-      },
-      {
-        "title": "Open source",
-        "text": "Small fixes, now and then."
-      }
-    ]
-  },
-  "contact": {
-    "title": "Find me"
-  },
-  "projects": {
-    "title": "Projects",
-    "all": "All projects",
-    "items": {
-      "sample-one": "A short description of the first project.",
-      "sample-two": "A short description of the second project.",
-      "sample-three": "Only shown on the all-projects page."
-    }
+  "egg": {
+    "out": "frantisek is not in the sudoers file. This incident will be reported (to [LinkedIn](link:linkedin), where you can ask nicely)."
   }
 }

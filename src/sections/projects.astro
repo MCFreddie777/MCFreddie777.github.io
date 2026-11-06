@@ -5,7 +5,7 @@
 //   messages: "projects": { "title": "...", "all": "All projects", "items": { "<name>": "description" } }
 import { getCollection } from "astro:content";
 import ProjectCard from "../components/ProjectCard.astro";
-import { messages, tr } from "../lib/content";
+import { data, messages, tr } from "../lib/content";
 const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
 const t = messages[lang];
 const block = tr(t, section.key ?? "projects");

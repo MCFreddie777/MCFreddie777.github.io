@@ -1,11 +1,11 @@
 ---
 // Section "hero": the name and tagline (messages: name, tagline).
-import { messages } from "../lib/content";
+import { data, messages } from "../lib/content";
 const { lang } = Astro.props as { lang: string; section: Record<string, any> };
 const t = messages[lang];
 ---
 
 <section class="hero">
-  <h1>{t.name}</h1>
+  <h1>{data.name}</h1>
   <p>{t.tagline}</p>
 </section>

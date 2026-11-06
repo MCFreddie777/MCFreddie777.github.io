@@ -2,13 +2,13 @@
 // All projects. Same section as on the home page, without the "featured only" filter.
 import Base from "../../layouts/Base.astro";
 import Projects from "../../sections/projects.astro";
-import { langs, messages } from "../../lib/content";
+import { data, langs, messages } from "../../lib/content";
 
 export const getStaticPaths = () => langs.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as string;
 const t = messages[lang];
 ---
 
-<Base lang={lang} path="projects/" title={`${t.menu.projects} · ${t.name}`}>
-  <Projects lang={lang} section={{ type: "projects", key: "projects" }} />
+<Base lang={lang} path="projects/" title={t.menu.projects}>
+  <Projects lang={lang} section={{ type: "projects", key: "projects", heading: "sectionHeadings.projectsAll" }} />
 </Base>

@@ -15,4 +15,18 @@ const projects = defineCollection({
     }),
 });
 
-export const collections = { projects };
+// Career entries: one JSON file each in src/content/career/ (numbered oldest first; the page lists them newest first).
+// Dates are "YYYY-MM"; no "to" means "now". Text lives in messages, referenced by translation key.
+const career = defineCollection({
+  loader: glob({ pattern: "*.json", base: "./src/content/career" }),
+  schema: z.object({
+    hash: z.string(),
+    from: z.string(),
+    to: z.string().optional(),
+    head: z.boolean().optional(),
+    titleTranslationKey: z.string(),
+    descriptionTranslationKey: z.string(),
+  }),
+});
+
+export const collections = { projects, career };

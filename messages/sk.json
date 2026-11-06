@@ -1,53 +1,63 @@
 {
-  "meta": {
-    "title": "Jane Doe",
-    "description": "Krátky popis tejto stránky."
+  "boot": [
+    "6+ rokov Angularu...check",
+    "filtrovaná káva v mlynčeku...check",
+    "kitty ears na slúchadlách...check"
+  ],
+  "intro1": "Mením kávu na kód.",
+  "intro2": "Cez deň programátor, v noci zakladateľ startupu (skoro ako Batman).",
+  "intro3": "Mám veľa hobbies a všetkému dávam 120 % (when the ADHD kicks in).",
+  "ears": "psst: moje sluchádla majú ružové uši. Fakt.",
+  "projects": {
+    "all": "zobraziť viac projektov",
+    "items": {
+      "rpi-pwm-fan-control": "Raspberry Pi, ktoré roztočí ventilátor len tak rýchlo, ako vyžaduje teplota.",
+      "ckeditor5-code-block": "Funkcia blokov kódu pre CKEditor 5."
+    }
   },
-  "name": "Jane Doe",
-  "tagline": "Píše softvér a stará sa o záhradu.",
+  "quests": [
+    "surfovanie",
+    "DJing",
+    "klavír",
+    "PC hry",
+    "3D tlač",
+    "grafický dizajn",
+    "surfskate",
+    "pájkovanie a DIY",
+    "a ďalšie*"
+  ],
+  "footnote": "*tiež: počas vysokej školy som na internáte pomáhal študentom, kde sa dalo, osobnostne rastiem v [Nexteria Leadership Academy](https://nexteria.sk/) a snažím sa byť cool ujo pre svoje krstné deti.",
+  "sayhi": "Spojme sa.",
+  "website": "Web",
+  "role_pre": "Spoluzakladateľ",
+  "hi_label": "AHOJ, SOM",
+  "go": "otvoriť na GitHube",
+  "career": {
+    "exponea-developer": {
+      "title": "Frontend Developer, Exponea",
+      "description": "Postavil a zautomatizoval som E2E testovanie v Cypresse, čím sa výrazne zvýšila istota pri vydávaní. Od nuly som navrhol a implementoval testovací pipeline. Testovaciu architektúru som oddelil do samostatného repozitára. Zvýšil som pokrytie testami a prispel ku kvalite produktu."
+    },
+    "bloomreach": {
+      "title": "Staff Frontend Engineer, Bloomreach",
+      "description": "Riadim rozhodnutia o architektúre frontendu vo veľkej Angular kódovej báze. Zvyšujem štandardy kvality kódu, stratégie testovania a udržiavateľnosti. Oceňovaný za silné analytické myslenie, zodpovednosť a spoľahlivosť. Aktívne zlepšujem tímové postupy v oblasti testovania, code review a doručovania."
+    },
+    "elevaiton": {
+      "title": "Co-founder, elevAIton",
+      "description": "Spoluzakladateľ iniciatívy v ranom štádiu, ktorá firmám pomáha šetriť čas pomocou AI a automatizácie."
+    }
+  },
   "menu": {
-    "home": "Domov",
-    "projects": "Projekty"
-  },
-  "socialLinks": {
-    "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "home": "domov",
+    "projects": "projekty",
+    "contact": "kontakt"
   },
   "ui": {
     "theme": "Prepnúť svetlý a tmavý režim",
-    "language": "Jazyk"
+    "menu": "Menu",
+    "language": "Jazyk",
+    "now": "dnes"
   },
-  "footer": "Vytvorené z tejto šablóny.",
-  "about": {
-    "title": "O mne",
-    "body": [
-      "Prvý odsek o **vás**. Tučné písmo a [odkazy](https://example.com) fungujú.",
-      "Druhý odsek. Zmeníte ho v messages/sk.json."
-    ]
-  },
-  "interests": {
-    "title": "Záujmy",
-    "items": [
-      {
-        "title": "Záhradkárčenie",
-        "text": "Najmä paradajky."
-      },
-      {
-        "title": "Open source",
-        "text": "Menšie opravy, občas."
-      }
-    ]
-  },
-  "contact": {
-    "title": "Nájdete ma"
-  },
-  "projects": {
-    "title": "Projekty",
-    "all": "Všetky projekty",
-    "items": {
-      "sample-one": "Krátky popis prvého projektu.",
-      "sample-two": "Krátky popis druhého projektu.",
-      "sample-three": "Zobrazí sa len na stránke všetkých projektov."
-    }
+  "egg": {
+    "out": "frantisek is not in the sudoers file. This incident will be reported (na [LinkedIn](link:linkedin)-e, kde mi môžete napísať)."
   }
 }

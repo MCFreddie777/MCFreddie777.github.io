@@ -1,8 +1,7 @@
 // Derived values for the templates in this folder. Edit freely; the engine doesn't care what it returns.
-// Add anything here that is easier to compute in JS than in a template.
 import { readFileSync, readdirSync } from "node:fs";
 
-// Dotted lookup into messages, same as `tr` in src/lib/content.ts: "projects.items.sample-one".
+// Dotted lookup into messages, same as `tr` in the site: "projects.my-repo".
 const tr = (t, key) => key.split(".").reduce((o, k) => (o == null ? o : o[k]), t) ?? key;
 
 export default async ({ data, t }) => {
@@ -15,8 +14,10 @@ export default async ({ data, t }) => {
     .filter((p) => p.featured_on_landing_page)
     .map((p) => ({ name: p.name, url: p.url, desc: tr(t, p.descriptionTranslationKey) }));
 
-  // Links with their translated labels, same as the site's "links" section.
-  const links = (data.socialLinks ?? []).map((l) => ({ href: l.href, label: t.socialLinks?.[l.id] ?? l.id }));
+  const contact = data.socialLinks.map((l) => ({ href: l.href, label: l.label ?? l.id }));
+  const company = data.companyUrl ? `[${data.company}](${data.companyUrl})` : data.company;
+  const quests = (t.quests ?? []).join(" · ");
+  const stack = ["Angular", "TypeScript", "JavaScript", "CSS", "Cypress", "Vue", "Laravel", "Docker", "Git", "Node.js"].join(" · "); // README-only: edit here
 
-  return { projects, links, year: new Date().getFullYear() };
+  return { projects, contact, company, quests, stack, year: new Date().getFullYear() };
 };

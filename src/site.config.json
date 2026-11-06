@@ -1,4 +1,5 @@
 {
+  "brand": "feri@bratislava",
   "menu": [
     {
       "id": "home",
@@ -7,7 +8,15 @@
     {
       "id": "projects",
       "href": "/projects/"
+    },
+    {
+      "id": "contact",
+      "href": "/#contact"
+    },
+    {
+      "id": "blog",
+      "href": "https://dev.to/frantisek_gic"
     }
   ],
-  "defaultTheme": "system"
+  "defaultTheme": "dark"
 }
