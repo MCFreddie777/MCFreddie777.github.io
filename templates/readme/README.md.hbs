@@ -2,4 +2,28 @@
 
 {{t.tagline}}
 
-{{#each data.socialLinks}}[{{id}}]({{{href}}}) · {{/each}}[{{data.siteUrl}}]({{{data.siteUrl}}})
+## {{t.about.title}}
+
+{{#each t.about.body}}
+{{{this}}}
+
+{{/each}}
+## {{t.interests.title}}
+
+{{#each t.interests.items}}
+- **{{title}}**: {{{text}}}
+{{/each}}
+
+## {{t.projects.title}}
+
+{{#each projects}}
+- [{{name}}]({{{url}}}): {{desc}}
+{{/each}}
+
+[{{t.projects.all}}]({{{data.siteUrl}}}/{{lang}}/projects/)
+
+## {{t.contact.title}}
+
+{{#each links}}[{{label}}]({{{href}}}) · {{/each}}[{{data.siteUrl}}]({{{data.siteUrl}}})
+
+<p align="center"><sub>{{year}} · {{t.footer}}</sub></p>
