@@ -1,19 +1,26 @@
 import data from "../../content/data.json";
 import site from "../site.config.json";
+import * as m from "../paraglide/messages.js";
+import { baseLocale, locales } from "../paraglide/runtime.js";
 
-// Languages = every messages/<lang>.json. One file means a single-language site.
-// Messages can be any shape; pages and components read what they need.
-const files = import.meta.glob("../../messages/*.json", { eager: true, import: "default" }) as Record<string, any>;
-export const messages: Record<string, any> = Object.fromEntries(
-  Object.entries(files).map(([path, m]) => [path.match(/([^/]+)\.json$/)![1], m]),
-);
-export const langs = Object.keys(messages);
-export const defaultLang = langs.includes("en") ? "en" : langs[0];
-export { data, site };
+// Text comes from Paraglide (messages/<lang>.json, compiled to src/paraglide/). Languages are listed in
+// project.inlang/settings.json. Paraglide's locale is set per page by src/middleware.ts.
+export const langs = locales as readonly string[];
+export const defaultLang = baseLocale as string;
+export { data, m, site };
 
-/** Dotted lookup into a messages object: tr(t, "projects.my-repo"). Falls back to the key itself. */
-export const tr = (t: any, key: string): string =>
-  key.split(".").reduce((o, k) => (o == null ? o : o[k]), t) ?? key;
+/** A message by its key, for keys stored in data (e.g. a project's descriptionTranslationKey). Use m.key() for fixed keys. */
+export const t = (key: string, fallback = key): string => (m as any)[key]?.() ?? fallback;
+
+/** Paraglide messages are plain strings, so a list is stored as numbered keys: quests_1, quests_2, … */
+export const list = (key: string): string[] => {
+  const items: string[] = [];
+  for (let i = 1; (m as any)[`${key}_${i}`]; i++) items.push(t(`${key}_${i}`));
+  return items;
+};
+
+/** Dotted lookup into a plain object (data.json): tr(data, "sectionHeadings.career"). Falls back to the key itself. */
+export const tr = (o: any, key: string): string => key.split(".").reduce((x, k) => (x == null ? x : x[k]), o) ?? key;
 
 /** Internal hrefs ("/", "/projects/") get the language prefix; full URLs stay as they are. */
 export const localHref = (lang: string, href: string) => (href.startsWith("/") ? `/${lang}${href}` : href);

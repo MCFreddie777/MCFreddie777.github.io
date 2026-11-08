@@ -1,14 +1,17 @@
 ---
 // Section "list": a heading and a list of items from messages.
-// Usage: { "type": "list", "key": "interests" }  ->  messages: "interests": { "title": "...", "items": [{ "title": "...", "text": "..." }] }
-import { messages, md, tr } from "../lib/content";
-const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
-const block = tr(messages[lang], section.key);
+// Usage: { "type": "list", "key": "interests" }  ->  messages: "interests_title", "interests_items_1_title", "interests_items_1_text", …
+import { md, t } from "../lib/content";
+const { section } = Astro.props as { lang: string; section: Record<string, any> };
+const key = section.key;
+const title = t(`${key}_title`, "");
+const items: { title: string; text: string }[] = [];
+for (let i = 1; t(`${key}_items_${i}_title`, ""); i++) items.push({ title: t(`${key}_items_${i}_title`), text: t(`${key}_items_${i}_text`, "") });
 ---
 
 <section>
-  {block.title && <h2>{block.title}</h2>}
+  {title && <h2>{title}</h2>}
   <ul>
-    {block.items.map((item: any) => <li><strong>{item.title}</strong>{item.text && <> · <span set:html={md(item.text)} /></>}</li>)}
+    {items.map((item) => <li><strong>{item.title}</strong>{item.text && <> · <span set:html={md(item.text)} /></>}</li>)}
   </ul>
 </section>

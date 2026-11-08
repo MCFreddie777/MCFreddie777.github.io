@@ -2,6 +2,6 @@
   "hash": "0d47f9b",
   "from": "2019-07",
   "to": "2021-01",
-  "titleTranslationKey": "career.exponea-developer.title",
-  "descriptionTranslationKey": "career.exponea-developer.description"
+  "titleTranslationKey": "career_exponea_developer_title",
+  "descriptionTranslationKey": "career_exponea_developer_description"
 }

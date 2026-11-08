@@ -1,7 +1,7 @@
 {
   "name": "rpi-pwm-fan-control",
   "url": "https://github.com/MCFreddie777/rpi-pwm-fan-control",
-  "descriptionTranslationKey": "projects.items.rpi-pwm-fan-control",
+  "descriptionTranslationKey": "projects_rpi_pwm_fan_control_description",
   "image": "../../assets/projects/rpi-pwm-fan-control/fan.svg",
   "featured_on_landing_page": true
 }

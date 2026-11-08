@@ -5,9 +5,8 @@ import { Icon } from "astro-icon/components";
 import Window from "../components/Window.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import { getCollection } from "astro:content";
-import { data, messages, tr } from "../lib/content";
+import { data, m, tr } from "../lib/content";
 const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
-const t = messages[lang];
 const all = (await getCollection("projects")).sort((a, b) => a.id.localeCompare(b.id));
 const projects = section.featuredOnly ? all.filter((p) => p.data.featured_on_landing_page) : all;
 ---
@@ -18,7 +17,7 @@ const projects = section.featuredOnly ? all.filter((p) => p.data.featured_on_lan
   </div>
   {
     section.featuredOnly ? (
-      <div class="more"><a class="btn pri" href={`/${lang}/projects/`}>{t.projects.all}<Icon name="lucide:arrow-right" class="ico" /></a></div>
+      <div class="more"><a class="btn pri" href={`/${lang}/projects/`}>{m.home_projects_view_more()}<Icon name="lucide:arrow-right" class="ico" /></a></div>
     ) : (
       <p class="cd"><a class="btn mono" href={`/${lang}/`}><Icon name="lucide:arrow-left" class="ico" />cd ..</a></p>
     )

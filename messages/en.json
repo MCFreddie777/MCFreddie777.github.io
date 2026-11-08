@@ -1,63 +1,42 @@
 {
-  "boot": [
-    "loaded 6+ years of Angular...",
-    "specialty coffee: grinded, brewing...",
-    "headphones fitted with kitty ears..."
-  ],
-  "intro1": "I turn coffee into code.",
-  "intro2": "Coder by day, startup founder by night.",
-  "intro3": "I have a lot of hobbies and I give 120% to every one of them (when the ADHD kicks in).",
-  "ears": "psst: my headphones have pink ears. Yes, really. Let's hop on a call so you can see it with your own eyes.",
-  "projects": {
-    "all": "view more projects",
-    "items": {
-      "rpi-pwm-fan-control": "A Raspberry Pi that spins its fan only as fast as the temperature demands.",
-      "ckeditor5-code-block": "A code block feature for CKEditor 5."
-    }
-  },
-  "quests": [
-    "surfing",
-    "DJing",
-    "piano",
-    "PC games",
-    "3D printing",
-    "graphic design",
-    "surfskate",
-    "soldering stuff",
-    "and more*"
-  ],
-  "footnote": "*also: I helped students in my dorm wherever I could during my university studies, I'm growing personally at the [Nexteria Leadership Academy](https://nexteria.sk/), and I'm a cool uncle to my godsons.",
-  "sayhi": "Let's get in touch.",
-  "website": "Website",
-  "role_pre": "Co-Founder of",
-  "hi_label": "HI, I AM",
-  "go": "open on GitHub",
-  "career": {
-    "exponea-developer": {
-      "title": "Frontend Developer, Exponea",
-      "description": "Built and automated E2E testing using Cypress, significantly improving release confidence. Designed and implemented a testing pipeline from scratch. Decoupled test architecture into a standalone repository. Increased test coverage and contributed to overall product quality."
-    },
-    "bloomreach": {
-      "title": "Staff Frontend Engineer, Bloomreach",
-      "description": "Driving frontend architecture decisions in a large Angular codebase. Raising standards in code quality, testing strategy, and maintainability. Recognized for strong analytical thinking, ownership, and reliability. Actively improving team practices around testing, reviews, and delivery."
-    },
-    "elevaiton": {
-      "title": "Co-Founder, elevAIton",
-      "description": "Co-founder of an early-stage initiative focused on practical AI and automation solutions. Designing and building product foundations from zero to one. Exploring AI-driven workflows, automation, and developer-centric tooling. Combining engineering execution with product experimentation and validation."
-    }
-  },
-  "menu": {
-    "home": "home",
-    "projects": "projects",
-    "contact": "contact"
-  },
-  "ui": {
-    "theme": "Toggle light and dark mode",
-    "menu": "Menu",
-    "language": "Language",
-    "now": "now"
-  },
-  "egg": {
-    "out": "frantisek is not in the sudoers file. This incident will be reported (to [LinkedIn](link:linkedin), where you can ask nicely)."
-  }
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "home_hero_boot_1": "loaded 6+ years of Angular...",
+  "home_hero_boot_2": "specialty coffee: grinded, brewing...",
+  "home_hero_boot_3": "headphones fitted with kitty ears...",
+  "home_readme_intro_1": "I turn coffee into code.",
+  "home_readme_intro_2": "I love a good challenge. When a problem grabs me, I don't let go until it's solved.",
+  "home_readme_intro_3": "Whatever I pick up, I go all in. Usually at 120%.",
+  "home_hero_ears": "psst: my headphones have pink ears. Yes, really. Let's hop on a call so you can see it with your own eyes.",
+  "home_projects_view_more": "view more projects",
+  "projects_rpi_pwm_fan_control_description": "A Raspberry Pi that spins its fan only as fast as the temperature demands.",
+  "projects_ckeditor5_code_block_description": "A code block feature for CKEditor 5.",
+  "home_quests_1": "surfing",
+  "home_quests_2": "DJing",
+  "home_quests_3": "piano",
+  "home_quests_4": "PC games",
+  "home_quests_5": "3D printing",
+  "home_quests_6": "graphic design",
+  "home_quests_7": "surfskate",
+  "home_quests_8": "soldering stuff",
+  "home_quests_9": "and more*",
+  "home_quests_footnote": "*also: I helped students in my dorm wherever I could during my university studies, I'm growing personally at the [Nexteria Leadership Academy](https://nexteria.sk/), and I'm a cool uncle to my godsons.",
+  "home_contact_heading": "Let's get in touch.",
+  "readme_website": "Website",
+  "home_hero_role_pre": "Co-Founder of",
+  "home_hero_hi_label": "HI, I AM",
+  "projects_card_open_on_github": "open on GitHub",
+  "career_exponea_developer_title": "Frontend Developer, Exponea",
+  "career_exponea_developer_description": "Built and automated E2E testing using Cypress, significantly improving release confidence. Designed and implemented a testing pipeline from scratch. Decoupled test architecture into a standalone repository. Increased test coverage and contributed to overall product quality.",
+  "career_bloomreach_title": "Staff Frontend Engineer, Bloomreach",
+  "career_bloomreach_description": "Driving frontend architecture decisions in a large Angular codebase. Raising standards in code quality, testing strategy, and maintainability. Recognized for strong analytical thinking, ownership, and reliability. Actively improving team practices around testing, reviews, and delivery.",
+  "career_elevaiton_title": "Co-Founder, elevAIton",
+  "career_elevaiton_description": "Co-founder of an early-stage initiative focused on practical AI and automation solutions. Designing and building product foundations from zero to one. Exploring AI-driven workflows, automation, and developer-centric tooling. Combining engineering execution with product experimentation and validation.",
+  "navbar_home": "home",
+  "navbar_projects": "projects",
+  "navbar_contact": "contact",
+  "navbar_theme_toggle": "Toggle light and dark mode",
+  "navbar_menu": "Menu",
+  "navbar_language": "Language",
+  "home_career_now": "now",
+  "home_egg_output": "frantisek is not in the sudoers file. This incident will be reported (to [LinkedIn](link:linkedin), where you can ask nicely)."
 }

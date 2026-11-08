@@ -1,17 +1,17 @@
 ---
 // Top bar: brand, menu links (src/site.config.json -> menu), language switcher, theme toggle.
-// Menu labels come from messages: menu.<id>. Hrefs starting with "/" get the language prefix.
+// Menu labels come from messages: navbar_<id>. Hrefs starting with "/" get the language prefix.
 import { Icon } from "astro-icon/components";
-import { isExternal, langs, localHref, messages, site } from "../lib/content";
+import { isExternal, langs, localHref, m, site, t } from "../lib/content";
+import { localizeHref } from "../paraglide/runtime.js";
 const { lang, path = "" } = Astro.props as { lang: string; path?: string };
-const t = messages[lang];
 const here = `/${lang}/${path}`;
 ---
 
 <header id="top">
   <div id="prog"></div>
   <a class="brand" href={`/${lang}/`}>{site.brand}</a>
-  <button id="burger" type="button" aria-label={t.ui.menu} aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+  <button id="burger" type="button" aria-label={m.navbar_menu()} aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
   <div id="menu">
     <nav aria-label="Main">
       {
@@ -20,7 +20,7 @@ const here = `/${lang}/${path}`;
           const external = isExternal(item.href);
           return (
             <a href={href} aria-current={href === here ? "page" : undefined} target={external ? "_blank" : undefined} rel={external ? "noopener" : undefined}>
-              {t.menu?.[item.id] ?? item.id}{external && <Icon name="lucide:arrow-up-right" class="ico ext" />}
+              {t(`navbar_${item.id}`, item.id)}{external && <Icon name="lucide:arrow-up-right" class="ico ext" />}
             </a>
           );
         })
@@ -29,16 +29,16 @@ const here = `/${lang}/${path}`;
     <div class="tools">
       {
         langs.length > 1 && (
-          <div class="lang" role="group" aria-label={t.ui.language}>
+          <div class="lang" role="group" aria-label={m.navbar_language()}>
             {langs.map((l) => (
-              <a href={`/${l}/${path}`} hreflang={l} lang={l} aria-pressed={String(l === lang)} aria-current={l === lang ? "true" : undefined}>
+              <a href={localizeHref(Astro.url.pathname, { locale: l })} hreflang={l} lang={l} aria-pressed={String(l === lang)} aria-current={l === lang ? "true" : undefined}>
                 {l.toUpperCase()}
               </a>
             ))}
           </div>
         )
       }
-      <button id="theme" type="button" aria-label={t.ui.theme}>
+      <button id="theme" type="button" aria-label={m.navbar_theme_toggle()}>
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
         <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"></path></svg>
       </button>

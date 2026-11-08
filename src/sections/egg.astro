@@ -1,9 +1,7 @@
 ---
 // Easter egg: click anywhere in the window (or the button) to "hire" and get the sudoers joke + exit 0.
 // In the message, [text](link:<id>) links to the socialLinks entry with that id.
-import { messages, resolveLinks } from "../lib/content";
-const { lang } = Astro.props as { lang: string };
-const t = messages[lang];
+import { m, resolveLinks } from "../lib/content";
 ---
 
 <section class="blk glowb armed" id="egg-win">
@@ -12,7 +10,7 @@ const t = messages[lang];
     <div class="egg">
       <button class="btn mono" id="sudo" type="button">$ sudo hire frantisek</button>
       <div id="eggout" hidden>
-        <p class="out" set:html={resolveLinks(t.egg.out)} />
+        <p class="out" set:html={resolveLinks(m.home_egg_output())} />
         <p class="exit"><span>$</span> exit 0<span class="caret" aria-hidden="true"></span></p>
       </div>
     </div>

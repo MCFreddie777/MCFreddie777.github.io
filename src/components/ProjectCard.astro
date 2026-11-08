@@ -2,15 +2,14 @@
 // One project card, from an entry of the "projects" collection (src/content/projects/*.json).
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import { messages, tr } from "../lib/content";
+import { m, t } from "../lib/content";
 const { project, lang } = Astro.props as { project: any; lang: string };
-const t = messages[lang];
 const p = project.data;
 ---
 
 <a class="card glowb" href={p.url}>
   <h3>{p.name}</h3>
   {p.image && <Image class="cover" src={p.image} alt="" width={96} height={96} />}
-  <p>{tr(t, p.descriptionTranslationKey)}</p>
-  <span class="go">{t.go}<Icon name="lucide:arrow-right" class="ico" /></span>
+  <p>{t(p.descriptionTranslationKey)}</p>
+  <span class="go">{m.projects_card_open_on_github()}<Icon name="lucide:arrow-right" class="ico" /></span>
 </a>

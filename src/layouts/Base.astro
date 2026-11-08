@@ -3,7 +3,7 @@
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
-import { data, defaultLang, langs, messages, site } from "../lib/content";
+import { data, defaultLang, langs, site, t } from "../lib/content";
 
 interface Props {
   lang: string;
@@ -12,12 +12,11 @@ interface Props {
   description?: string;
 }
 const { lang, path = "", title, description } = Astro.props;
-const t = messages[lang];
-// SEO: text like the elevAIton landing page: messages seo_home_title and seo_home_description (both optional; the description defaults to intro1-3);
+// SEO: text like the elevAIton landing page: messages seo_home_title and seo_home_description (both optional; the description defaults to home_readme_intro_1-3);
 // inner pages are "<title> | <name>".
-const pageTitle = title ? `${title.charAt(0).toLocaleUpperCase(lang) + title.slice(1)} | ${data.name}` : (t.seo_home_title ?? data.name);
-const intro = [t.intro1, t.intro2, t.intro3].filter(Boolean).join(" ").replace(/\*\*/g, "");
-const pageDescription = description ?? t.seo_home_description ?? intro;
+const pageTitle = title ? `${title.charAt(0).toLocaleUpperCase(lang) + title.slice(1)} | ${data.name}` : t("seo_home_title", data.name);
+const intro = [t("home_readme_intro_1", ""), t("home_readme_intro_2", ""), t("home_readme_intro_3", "")].filter(Boolean).join(" ").replace(/\*\*/g, "");
+const pageDescription = description ?? t("seo_home_description", intro);
 const origin = Astro.site ? Astro.site.origin : "";
 const canonical = `${origin}/${lang}/${path}`;
 const person = {

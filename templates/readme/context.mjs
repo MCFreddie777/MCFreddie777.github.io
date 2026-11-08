@@ -1,8 +1,9 @@
 // Derived values for the templates in this folder. Edit freely; the engine doesn't care what it returns.
 import { readFileSync, readdirSync } from "node:fs";
 
-// Dotted lookup into messages, same as `tr` in the site: "projects.my-repo".
-const tr = (t, key) => key.split(".").reduce((o, k) => (o == null ? o : o[k]), t) ?? key;
+// A message by key, like `t` in the site; lists are numbered keys (quests_1, quests_2, …).
+const tr = (t, key) => t[key] ?? key;
+const list = (t, key) => Object.keys(t).filter((k) => new RegExp(`^${key}_\\d+$`).test(k)).sort((a, b) => a.split("_").pop() - b.split("_").pop()).map((k) => t[k]);
 
 export default async ({ data, t }) => {
   // Projects: the same files the site's content collection reads (src/content/projects/*.json).
@@ -16,7 +17,7 @@ export default async ({ data, t }) => {
 
   const contact = data.socialLinks.map((l) => ({ href: l.href, label: l.label ?? l.id }));
   const company = data.companyUrl ? `[${data.company}](${data.companyUrl})` : data.company;
-  const quests = (t.quests ?? []).join(" · ");
+  const quests = list(t, "home_quests").join(" · ");
   const stack = ["Angular", "TypeScript", "JavaScript", "CSS", "Cypress", "Vue", "Laravel", "Docker", "Git", "Node.js"].join(" · "); // README-only: edit here
 
   return { projects, contact, company, quests, stack, year: new Date().getFullYear() };

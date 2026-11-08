@@ -1,15 +1,34 @@
 import { defineConfig } from "astro/config";
 import icon from "astro-icon";
-import { readFileSync, readdirSync } from "node:fs";
+import { paraglideVitePlugin } from "@inlang/paraglide-js";
+import { readFileSync } from "node:fs";
 
 const { siteUrl } = JSON.parse(readFileSync("./content/data.json", "utf8"));
-const langs = readdirSync("./messages").filter((f) => f.endsWith(".json")).map((f) => f.slice(0, -5));
-const defaultLang = langs.includes("en") ? "en" : langs[0];
+// Languages live in one place: project.inlang/settings.json (Paraglide's project file).
+const { baseLocale, locales } = JSON.parse(readFileSync("./project.inlang/settings.json", "utf8"));
 
 // Custom domain: set it in the repo's Pages settings (an Actions deploy ignores a CNAME file).
 export default defineConfig({
   site: siteUrl,
-  integrations: [icon()],
   trailingSlash: "always",
-  redirects: { "/": `/${defaultLang}/` },
+  vite: {
+    plugins: [
+      paraglideVitePlugin({
+        project: "./project.inlang",
+        outdir: "./src/paraglide",
+        strategy: ["url", "cookie", "globalVariable", "baseLocale"],
+        urlPatterns: [
+          { pattern: "/:path(.*)?", localized: locales.map((l) => [l, `/${l}/:path(.*)?`]) },
+        ],
+      }),
+    ],
+  },
+  i18n: {
+    locales,
+    defaultLocale: baseLocale,
+    routing: { prefixDefaultLocale: true, redirectToDefaultLocale: true },
+  },
+  integrations: [
+    icon(),
+  ],
 });

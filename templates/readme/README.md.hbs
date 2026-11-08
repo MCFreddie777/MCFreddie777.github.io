@@ -1,12 +1,12 @@
 <h1 align="center">{{data.name}}</h1>
 
-<p align="center">{{data.role}} / {{t.role_pre}} <b>{{{company}}}</b></p>
+<p align="center">{{data.role}} / {{t.home_hero_role_pre}} <b>{{{company}}}</b></p>
 
 ## $ {{data.sectionHeadings.readme}}
 
-{{{t.intro1}}}
+{{{t.home_readme_intro_1}}}
 
-{{{t.intro2}}}
+{{{t.home_readme_intro_2}}}
 
 ## $ {{data.sectionHeadings.projects}}
 
@@ -14,21 +14,21 @@
 |{{#each projects}}---|{{/each}}
 |{{#each projects}} {{desc}} |{{/each}}
 
-**[{{t.projects.all}}]({{{data.siteUrl}}}/{{lang}}/projects/)**
+**[{{t.home_projects_view_more}}]({{{data.siteUrl}}}/{{lang}}/projects/)**
 
 ## $ {{data.sectionHeadings.quests}}
 
 {{quests}}
 
-<sub>{{{t.footnote}}}</sub>
+<sub>{{{t.home_quests_footnote}}}</sub>
 
 ## $ {{data.sectionHeadings.stack}}
 
 {{stack}}
 
 ## $ {{data.sectionHeadings.contact}}
-_{{t.sayhi}}_
+_{{t.home_contact_heading}}_
 
-{{#each contact}}[{{label}}]({{{href}}}) · {{/each}}[{{t.website}}]({{{data.siteUrl}}})
+{{#each contact}}[{{label}}]({{{href}}}) · {{/each}}[{{t.readme_website}}]({{{data.siteUrl}}})
 
 <p align="center"><sub>{{year}} | {{t.footer}}</sub></p>

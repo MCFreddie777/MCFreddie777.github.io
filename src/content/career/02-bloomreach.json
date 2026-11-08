@@ -2,6 +2,6 @@
   "hash": "9c3b7a4",
   "from": "2021-01",
   "head": true,
-  "titleTranslationKey": "career.bloomreach.title",
-  "descriptionTranslationKey": "career.bloomreach.description"
+  "titleTranslationKey": "career_bloomreach_title",
+  "descriptionTranslationKey": "career_bloomreach_description"
 }

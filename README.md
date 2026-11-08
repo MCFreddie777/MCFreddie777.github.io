@@ -18,7 +18,8 @@ npm run build:readme -- sk     # README in another language
 | What | Where |
 |---|---|
 | Data that is the same in every language (links, URLs, settings, any key you like) | `content/data.json` |
-| All text, one file per language. **Languages = the files that exist** | `messages/<lang>.json` |
+| All text, one flat file per language (compiled by [Paraglide](https://paraglidejs.com) into `m.key()` functions) | `messages/<lang>.json` |
+| The list of languages and the default one | `project.inlang/settings.json` |
 | Which sections the home page shows, in order | `content/data.json` → `sections` |
 | Settings only the site uses (top bar menu, default theme) | `src/site.config.json` |
 | The sections themselves (Astro components) | `src/sections/*.astro` |
@@ -27,15 +28,15 @@ npm run build:readme -- sk     # README in another language
 | Page shell, top bar, colours | `src/layouts/`, `src/components/`, `src/styles/global.css` |
 
 ### Add a section
-1. Create `src/sections/quote.astro`. It receives `{ lang, section }` and can import `data`, `messages` and `tr` from `src/lib/content`.
+1. Create `src/sections/quote.astro`. It receives `{ lang, section }` and can import `data`, `m` (the messages) and `t` from `src/lib/content`.
 2. List it in `content/data.json`: `{ "type": "quote", "key": "quote" }` (any extra options you add are in `section`).
-3. Add the text to every `messages/<lang>.json`: `"quote": { "text": "..." }`.
+3. Add the text to every `messages/<lang>.json`: `"quote_text": "..."`, and show it with `m.quote_text()`. Keys are flat; a list is numbered keys (`quote_1`, `quote_2`, … read with `list("quote")`).
 
 ### Add a language
-Copy `messages/en.json` to `messages/de.json` and translate it. Routes (`/de/`), the language switcher and the README build (`npm run build:readme -- de`) appear on their own.
+Add `de` to `locales` in `project.inlang/settings.json`, copy `messages/en.json` to `messages/de.json` and translate it. Routes (`/de/`), the language switcher and the README build (`npm run build:readme -- de`) appear on their own.
 
 ### Add a project
-Add `src/content/projects/04-my-project.json` with `name`, `url`, `descriptionTranslationKey` (a dotted path into the messages), and optionally `image` and `featured_on_landing_page`. Put the description under that key in every language file.
+Add `src/content/projects/04-my-project.json` with `name`, `url`, `descriptionTranslationKey` (a message key, e.g. `projects_my_project_description`), and optionally `image` and `featured_on_landing_page`. Put the description under that key in every language file.
 
 ### README template
 Everything in `templates/readme/` is copied to `dist-readme/`. Files ending in `.hbs` are rendered first (the suffix is dropped). Templates get:
@@ -50,7 +51,7 @@ Everything in `templates/readme/` is copied to `dist-readme/`. Files ending in `
 Handlebars syntax (the `handlebars` package):
 ```hbs
 {{t.name}}                 escaped value        {{{t.intro}}}   raw value (use for Markdown or HTML)
-{{#each t.about.body}} {{{this}}} {{@index}} {{/each}}
+{{t.about_title}}            a message (keys are flat)   {{#each projects}} {{name}} {{@index}} {{/each}}
 {{#if posts}} ... {{/if}}
 ```
 A path that resolves to nothing prints nothing. Helpers, partials and `{{else}}` work as in Handlebars.

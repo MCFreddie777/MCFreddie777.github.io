@@ -1,63 +1,42 @@
 {
-  "boot": [
-    "6+ rokov Angularu...check",
-    "filtrovaná káva v mlynčeku...check",
-    "kitty ears na slúchadlách...check"
-  ],
-  "intro1": "Mením kávu na kód.",
-  "intro2": "Cez deň programátor, v noci zakladateľ startupu (skoro ako Batman).",
-  "intro3": "Mám veľa hobbies a všetkému dávam 120 % (when the ADHD kicks in).",
-  "ears": "psst: moje sluchádla majú ružové uši. Fakt.",
-  "projects": {
-    "all": "zobraziť viac projektov",
-    "items": {
-      "rpi-pwm-fan-control": "Raspberry Pi, ktoré roztočí ventilátor len tak rýchlo, ako vyžaduje teplota.",
-      "ckeditor5-code-block": "Funkcia blokov kódu pre CKEditor 5."
-    }
-  },
-  "quests": [
-    "surfovanie",
-    "DJing",
-    "klavír",
-    "PC hry",
-    "3D tlač",
-    "grafický dizajn",
-    "surfskate",
-    "pájkovanie a DIY",
-    "a ďalšie*"
-  ],
-  "footnote": "*tiež: počas vysokej školy som na internáte pomáhal študentom, kde sa dalo, osobnostne rastiem v [Nexteria Leadership Academy](https://nexteria.sk/) a snažím sa byť cool ujo pre svoje krstné deti.",
-  "sayhi": "Spojme sa.",
-  "website": "Web",
-  "role_pre": "Spoluzakladateľ",
-  "hi_label": "AHOJ, SOM",
-  "go": "otvoriť na GitHube",
-  "career": {
-    "exponea-developer": {
-      "title": "Frontend Developer, Exponea",
-      "description": "Postavil a zautomatizoval som E2E testovanie v Cypresse, čím sa výrazne zvýšila istota pri vydávaní. Od nuly som navrhol a implementoval testovací pipeline. Testovaciu architektúru som oddelil do samostatného repozitára. Zvýšil som pokrytie testami a prispel ku kvalite produktu."
-    },
-    "bloomreach": {
-      "title": "Staff Frontend Engineer, Bloomreach",
-      "description": "Riadim rozhodnutia o architektúre frontendu vo veľkej Angular kódovej báze. Zvyšujem štandardy kvality kódu, stratégie testovania a udržiavateľnosti. Oceňovaný za silné analytické myslenie, zodpovednosť a spoľahlivosť. Aktívne zlepšujem tímové postupy v oblasti testovania, code review a doručovania."
-    },
-    "elevaiton": {
-      "title": "Co-founder, elevAIton",
-      "description": "Spoluzakladateľ iniciatívy v ranom štádiu, ktorá firmám pomáha šetriť čas pomocou AI a automatizácie."
-    }
-  },
-  "menu": {
-    "home": "domov",
-    "projects": "projekty",
-    "contact": "kontakt"
-  },
-  "ui": {
-    "theme": "Prepnúť svetlý a tmavý režim",
-    "menu": "Menu",
-    "language": "Jazyk",
-    "now": "dnes"
-  },
-  "egg": {
-    "out": "frantisek is not in the sudoers file. This incident will be reported (na [LinkedIn](link:linkedin)-e, kde mi môžete napísať)."
-  }
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "home_hero_boot_1": "6+ rokov Angularu...check",
+  "home_hero_boot_2": "filtrovaná káva v mlynčeku...check",
+  "home_hero_boot_3": "kitty ears na slúchadlách...check",
+  "home_readme_intro_1": "Mením kávu na kód.",
+  "home_readme_intro_2": "Milujem dobré výzvy. Keď ma nejaký problém chytí, nepustím ho, kým ho nevyriešim.",
+  "home_readme_intro_3": "Do čoho sa pustím, do toho idem naplno. Zvyčajne na 120 %.",
+  "home_hero_ears": "psst: moje sluchádla majú ružové uši. Fakt.",
+  "home_projects_view_more": "zobraziť viac projektov",
+  "projects_rpi_pwm_fan_control_description": "Raspberry Pi, ktoré roztočí ventilátor len tak rýchlo, ako vyžaduje teplota.",
+  "projects_ckeditor5_code_block_description": "Funkcia blokov kódu pre CKEditor 5.",
+  "home_quests_1": "surfovanie",
+  "home_quests_2": "DJing",
+  "home_quests_3": "klavír",
+  "home_quests_4": "PC hry",
+  "home_quests_5": "3D tlač",
+  "home_quests_6": "grafický dizajn",
+  "home_quests_7": "surfskate",
+  "home_quests_8": "pájkovanie a DIY",
+  "home_quests_9": "a ďalšie*",
+  "home_quests_footnote": "*tiež: počas vysokej školy som na internáte pomáhal študentom, kde sa dalo, osobnostne rastiem v [Nexteria Leadership Academy](https://nexteria.sk/) a snažím sa byť cool ujo pre svoje krstné deti.",
+  "home_contact_heading": "Spojme sa.",
+  "readme_website": "Web",
+  "home_hero_role_pre": "Spoluzakladateľ",
+  "home_hero_hi_label": "AHOJ, SOM",
+  "projects_card_open_on_github": "otvoriť na GitHube",
+  "career_exponea_developer_title": "Frontend Developer, Exponea",
+  "career_exponea_developer_description": "Postavil a zautomatizoval som E2E testovanie v Cypresse, čím sa výrazne zvýšila istota pri vydávaní. Od nuly som navrhol a implementoval testovací pipeline. Testovaciu architektúru som oddelil do samostatného repozitára. Zvýšil som pokrytie testami a prispel ku kvalite produktu.",
+  "career_bloomreach_title": "Staff Frontend Engineer, Bloomreach",
+  "career_bloomreach_description": "Riadim rozhodnutia o architektúre frontendu vo veľkej Angular kódovej báze. Zvyšujem štandardy kvality kódu, stratégie testovania a udržiavateľnosti. Oceňovaný za silné analytické myslenie, zodpovednosť a spoľahlivosť. Aktívne zlepšujem tímové postupy v oblasti testovania, code review a doručovania.",
+  "career_elevaiton_title": "Co-founder, elevAIton",
+  "career_elevaiton_description": "Spoluzakladateľ iniciatívy v ranom štádiu, ktorá firmám pomáha šetriť čas pomocou AI a automatizácie.",
+  "navbar_home": "domov",
+  "navbar_projects": "projekty",
+  "navbar_contact": "kontakt",
+  "navbar_theme_toggle": "Prepnúť svetlý a tmavý režim",
+  "navbar_menu": "Menu",
+  "navbar_language": "Jazyk",
+  "home_career_now": "dnes",
+  "home_egg_output": "frantisek is not in the sudoers file. This incident will be reported (na [LinkedIn](link:linkedin)-e, kde mi môžete napísať)."
 }

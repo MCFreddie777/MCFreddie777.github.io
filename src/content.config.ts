@@ -11,7 +11,7 @@ const projects = defineCollection({
       url: z.string().url(),
       image: image().optional(), // path relative to the file, e.g. "../../assets/my-project.png"
       featured_on_landing_page: z.boolean().optional(),
-      descriptionTranslationKey: z.string(), // dotted path into messages/<lang>.json, e.g. "projects.items.sample-one"
+      descriptionTranslationKey: z.string(), // message key in messages/<lang>.json, e.g. "projects_sample_one_description"
     }),
 });
 

@@ -1,15 +1,14 @@
 ---
-// Big words that slide sideways while you scroll. The words are a plain list in messages.
+// Big words that slide sideways while you scroll. The words are numbered messages: home_quests_1, home_quests_2, …
 // A trailing * on a word links it to the footnote below the window.
 import Window from "../components/Window.astro";
-import { data, md, messages, tr } from "../lib/content";
+import { data, list, m, md, tr } from "../lib/content";
 const { lang, section } = Astro.props as { lang: string; section: Record<string, any> };
-const t = messages[lang];
 // The words are dealt into three rows. Their look (colour, outline) is picked at random when the page is built:
 // the least-used look goes first, and a word never shares its colour with the one before it or the one above it.
 const looks = ["", "g", "p", "o", "og", "op"];
 const colour: Record<string, string> = { "": "ink", o: "ink", g: "green", og: "green", p: "pink", op: "pink" };
-const words = t.quests as string[];
+const words = list("home_quests");
 const used = new Map(looks.map((l) => [l, 0]));
 const picked: string[] = [];
 words.forEach((_, k) => {
@@ -39,4 +38,4 @@ const rows = [0, 1, 2].map((i) => words.flatMap((text, k) => (k % 3 === i ? [{ t
     }
   </div>
 </Window>
-<p class="fn"><b>*</b><Fragment set:html={md(t.footnote.replace(/^\*/, ""))} /></p>
+<p class="fn"><b>*</b><Fragment set:html={md(m.home_quests_footnote().replace(/^\*/, ""))} /></p>
