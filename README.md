@@ -26,6 +26,7 @@ npm run build:readme -- sk     # README in another language
 | Projects (one file each) | `src/content/projects/*.json` |
 | README template and helpers | `templates/readme/` |
 | Page shell, top bar, colours | `src/layouts/`, `src/components/`, `src/styles/global.css` |
+| Sitemap with hreflang alternates (`dist/sitemap-index.xml`, built from `site` = `siteUrl`) and robots.txt | `astro.config.mjs` (`@astrojs/sitemap`), `src/pages/robots.txt.ts` |
 
 ### Add a section
 1. Create `src/sections/quote.astro`. It receives `{ lang, section }` and can import `data`, `m` (the messages) and `t` from `src/lib/content`.

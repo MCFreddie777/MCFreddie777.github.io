@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import icon from "astro-icon";
+import sitemap from "@astrojs/sitemap";
 import { paraglideVitePlugin } from "@inlang/paraglide-js";
 import { readFileSync } from "node:fs";
 
@@ -32,5 +33,9 @@ export default defineConfig({
   },
   integrations: [
     icon(),
+    sitemap({
+      filter: (page) => new URL(page).pathname !== "/",
+      i18n: { defaultLocale: baseLocale, locales: Object.fromEntries(locales.map((l) => [l, l])) },
+    }),
   ],
 });

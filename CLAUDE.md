@@ -8,7 +8,7 @@ Usage and concepts for humans are in README.md; don't duplicate them here.
 | `content/data.json` | open data shared by site and README (name, role, company, social links, section headings, sections): any key is `data.key` in pages and `{{data.key}}` in README templates; `sections` lists the home page sections |
 | `src/site.config.json` | settings only the site uses (`brand`, top bar `menu`, `defaultTheme`) |
 | `messages/<lang>.json` | text per language, flat keys (lists = numbered keys `home_quests_1`…), compiled by Paraglide to `src/paraglide/` (generated, git-ignored); SEO text: optional `seo_home_title`, `seo_home_description` (default: home_readme_intro_1-3) |
-| `project.inlang/settings.json` | Paraglide project: the language list and `baseLocale`; `astro.config.mjs` reads it for Astro's `i18n` config |
+| `project.inlang/settings.json` | Paraglide project: the language list and `baseLocale`; `astro.config.mjs` reads it for Astro's `i18n` config and the sitemap |
 | `src/middleware.ts` | sets Paraglide's locale from `Astro.currentLocale` before each page renders (static build) |
 | `src/sections/*.astro` | home page sections, placed from `data.sections`; receive `{ lang, section }` (hero, readme, career, projects, quests, contact, egg + generic text, list, links) |
 | `src/scripts/script.ts` | behaviour (theme, menu, typing, scroll motion), reads data-* attributes, no text |
@@ -18,7 +18,7 @@ Usage and concepts for humans are in README.md; don't duplicate them here.
 | `src/content/career/` | career entries (hash, dates, head flag, message keys), one JSON file each; text in `messages` |
 | `src/components/`, `src/layouts/`, `src/styles/global.css` | shell, top bar, neutral starter styles |
 | `src/lib/content.ts` | languages from Paraglide, data; helpers `t` (message by key), `list` (numbered keys), `tr` (dotted lookup in data), `md`, `localHref` |
-| `src/pages/index.astro` | root `/`: Paraglide picks the language in the browser (cookie from the switcher, then browser languages, then default) and redirects |
+| `src/pages/index.astro`, `src/pages/robots.txt.ts` | root `/`: Paraglide picks the language in the browser (cookie from the switcher, then browser languages, then default) and redirects; robots.txt points at the sitemap |
 | `templates/readme/` | README templates (`*.hbs` rendered, other files copied as-is) + optional `context.mjs` for derived/fetched values |
 | `scripts/build-readme.mjs` | renders `templates/readme/` to `dist-readme/` with `{ data, t, lang, langs, ...context.mjs }`; language as argument: `npm run build:readme -- <lang>` |
 | `.github/workflows/` | Pages deploy, optional FTP deploy (secrets `FTP_*`), README publish to the profile repo |
