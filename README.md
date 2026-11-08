@@ -61,4 +61,6 @@ A path that resolves to nothing prints nothing. Helpers, partials and `{{else}}`
 3. Create a fine-grained token limited to the profile repo with "Contents: read and write". Save it in this repo as the Actions secret `PROFILE_REPO_TOKEN`. Never commit it.
 4. Push to `main`: the site deploys, and the README is generated and pushed to the profile repo (also weekly, to refresh fetched data).
 
+**Your own hosting (FTP/FTPS) instead of, or next to, GitHub Pages:** `.github/workflows/deploy-ftp.yml` builds the site and uploads `dist/`. Add the Actions secrets `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` and, if the web folder is not `www/`, the variable `FTP_DIR` (ending with `/`). Files that are not part of the build are never deleted. Set `siteUrl` in `content/data.json` to the address visitors use.
+
 The profile repo defaults to `<owner>/<owner>`; set the Actions variable `PROFILE_REPO` to use another. To publish a non-English README, add the language argument to the `build:readme` step in `.github/workflows/readme.yml`.

@@ -18,7 +18,7 @@ Usage and concepts for humans are in README.md; don't duplicate them here.
 | `src/lib/content.ts` | discovers languages, loads data + messages; helpers `tr`, `md`, `localHref` |
 | `templates/readme/` | README templates (`*.hbs` rendered, other files copied as-is) + optional `context.mjs` for derived/fetched values |
 | `scripts/build-readme.mjs` | renders `templates/readme/` to `dist-readme/` with `{ data, t, lang, langs, ...context.mjs }`; language as argument: `npm run build:readme -- <lang>` |
-| `.github/workflows/` | Pages deploy, README publish to the profile repo |
+| `.github/workflows/` | Pages deploy, optional FTP deploy (secrets `FTP_*`), README publish to the profile repo |
 
 ## Rules
 - The generator is content-agnostic: no field names in `scripts/`; structure lives in templates, values in `content/` and `messages/`.
