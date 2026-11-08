@@ -1,6 +1,8 @@
 ---
 // The page shell: <head>, top bar, scripts. Pages put their content in the slot.
 import "../styles/global.css";
+import { existsSync } from "node:fs";
+import { SEO } from "astro-seo";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import { data, defaultLang, langs, site, t } from "../lib/content";
@@ -19,6 +21,13 @@ const intro = [t("home_readme_intro_1", ""), t("home_readme_intro_2", ""), t("ho
 const pageDescription = description ?? t("seo_home_description", intro);
 const origin = Astro.site ? Astro.site.origin : "";
 const canonical = `${origin}/${lang}/${path}`;
+const alternates = [
+  ...langs.map((l) => ({ hrefLang: l, href: `${origin}/${l}/${path}` })),
+  { hrefLang: "x-default", href: `${origin}/${defaultLang}/${path}` },
+];
+// Share preview: public/og/<lang>.png (1200×630), if it exists. og:locale (e.g. en_US) from the message seo_og_locale.
+const ogImage = existsSync(`public/og/${lang}.png`) ? `${origin}/og/${lang}.png` : undefined;
+const ogLocale = t("seo_og_locale", lang);
 const person = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -34,20 +43,20 @@ const person = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={pageDescription} />
-    <link rel="canonical" href={canonical} />
-    {langs.map((l) => <link rel="alternate" hreflang={l} href={`${origin}/${l}/${path}`} />)}
-    <link rel="alternate" hreflang="x-default" href={`${origin}/${defaultLang}/${path}`} />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={pageDescription} />
-    <meta property="og:site_name" content={data.name} />
-    <meta property="og:locale" content={lang} />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={pageDescription} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
+    <SEO
+      title={pageTitle}
+      description={pageDescription}
+      canonical={canonical}
+      languageAlternates={alternates}
+      openGraph={ogImage
+        ? {
+            basic: { title: pageTitle, type: "website", image: ogImage, url: canonical },
+            optional: { locale: ogLocale, siteName: data.name, description: pageDescription },
+            image: { width: 1200, height: 630, type: "image/png", alt: pageTitle },
+          }
+        : undefined}
+      twitter={{ card: ogImage ? "summary_large_image" : "summary", title: pageTitle, description: pageDescription, image: ogImage }}
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

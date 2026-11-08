@@ -38,5 +38,6 @@
   "navbar_menu": "Menu",
   "navbar_language": "Language",
   "home_career_now": "now",
-  "home_egg_output": "frantisek is not in the sudoers file. This incident will be reported (to [LinkedIn](link:linkedin), where you can ask nicely)."
+  "home_egg_output": "frantisek is not in the sudoers file. This incident will be reported (to [LinkedIn](link:linkedin), where you can ask nicely).",
+  "seo_og_locale": "en_US"
 }

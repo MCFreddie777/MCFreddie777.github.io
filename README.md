@@ -25,6 +25,7 @@ npm run build:readme -- sk     # README in another language
 | The sections themselves (Astro components) | `src/sections/*.astro` |
 | Projects (one file each) | `src/content/projects/*.json` |
 | README template and helpers | `templates/readme/` |
+| Share preview image per language (1200×630; leave it out and pages share without one) | `public/og/<lang>.png` |
 | Page shell, top bar, colours | `src/layouts/`, `src/components/`, `src/styles/global.css` |
 | Sitemap with hreflang alternates (`dist/sitemap-index.xml`, built from `site` = `siteUrl`) and robots.txt | `astro.config.mjs` (`@astrojs/sitemap`), `src/pages/robots.txt.ts` |
 

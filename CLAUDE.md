@@ -16,7 +16,8 @@ Usage and concepts for humans are in README.md; don't duplicate them here.
 | `src/pages/[lang]/` | pages (home renders `data.sections`; projects page) |
 | `src/content/projects/`, `src/content.config.ts` | projects as a content collection, one JSON file each; README reads them too |
 | `src/content/career/` | career entries (hash, dates, head flag, message keys), one JSON file each; text in `messages` |
-| `src/components/`, `src/layouts/`, `src/styles/global.css` | shell, top bar, neutral starter styles |
+| `src/components/`, `src/layouts/`, `src/styles/global.css` | shell, top bar, neutral starter styles; `Base.astro` writes the head with `astro-seo` (`<SEO>`: title, description, canonical, hreflang + `x-default`, Open Graph, Twitter) |
+| `public/og/<lang>.png` | share preview per language (1200×630), used when the file exists; `og:locale` comes from the message `seo_og_locale` |
 | `src/lib/content.ts` | languages from Paraglide, data; helpers `t` (message by key), `list` (numbered keys), `tr` (dotted lookup in data), `md`, `localHref` |
 | `src/pages/index.astro`, `src/pages/robots.txt.ts` | root `/`: Paraglide picks the language in the browser (cookie from the switcher, then browser languages, then default) and redirects; robots.txt points at the sitemap |
 | `templates/readme/` | README templates (`*.hbs` rendered, other files copied as-is) + optional `context.mjs` for derived/fetched values |
