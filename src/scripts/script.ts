@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Draggable } from "gsap/Draggable";
 import Lenis from "lenis";
+import { setLocale, type Locale } from "../paraglide/runtime.js";
 
 const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector(s) as T | null;
 const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => Array.from(r.querySelectorAll(s)) as T[];
@@ -20,6 +21,14 @@ $("#theme")?.addEventListener("click", () => {
   root.dataset.theme = next;
   try { localStorage.setItem("theme", next); } catch {}
 });
+
+/* language switcher: Paraglide saves the pick in a cookie (so "/" opens it next time) and opens this page in that language */
+$$<HTMLAnchorElement>(".lang a").forEach((a) =>
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    setLocale(a.hreflang as Locale);
+  }),
+);
 
 /* hamburger */
 const topbar = $("#top");

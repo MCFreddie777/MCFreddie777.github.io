@@ -18,7 +18,7 @@ Usage and concepts for humans are in README.md; don't duplicate them here.
 | `src/content/career/` | career entries (hash, dates, head flag, message keys), one JSON file each; text in `messages` |
 | `src/components/`, `src/layouts/`, `src/styles/global.css` | shell, top bar, neutral starter styles |
 | `src/lib/content.ts` | languages from Paraglide, data; helpers `t` (message by key), `list` (numbered keys), `tr` (dotted lookup in data), `md`, `localHref` |
-| `src/pages/index.astro`, `src/pages/robots.txt.ts` | root `/` redirects to the default language (Astro i18n) |
+| `src/pages/index.astro` | root `/`: Paraglide picks the language in the browser (cookie from the switcher, then browser languages, then default) and redirects |
 | `templates/readme/` | README templates (`*.hbs` rendered, other files copied as-is) + optional `context.mjs` for derived/fetched values |
 | `scripts/build-readme.mjs` | renders `templates/readme/` to `dist-readme/` with `{ data, t, lang, langs, ...context.mjs }`; language as argument: `npm run build:readme -- <lang>` |
 | `.github/workflows/` | Pages deploy, optional FTP deploy (secrets `FTP_*`), README publish to the profile repo |

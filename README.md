@@ -33,7 +33,7 @@ npm run build:readme -- sk     # README in another language
 3. Add the text to every `messages/<lang>.json`: `"quote_text": "..."`, and show it with `m.quote_text()`. Keys are flat; a list is numbered keys (`quote_1`, `quote_2`, … read with `list("quote")`).
 
 ### Add a language
-Add `de` to `locales` in `project.inlang/settings.json`, copy `messages/en.json` to `messages/de.json` and translate it. Routes (`/de/`), the language switcher and the README build (`npm run build:readme -- de`) appear on their own.
+Add `de` to `locales` in `project.inlang/settings.json`, copy `messages/en.json` to `messages/de.json` and translate it. Routes (`/de/`), the language switcher and the README build (`npm run build:readme -- de`) appear on their own. The root `/` opens the language the visitor last picked, else their browser's language, else the default.
 
 ### Add a project
 Add `src/content/projects/04-my-project.json` with `name`, `url`, `descriptionTranslationKey` (a message key, e.g. `projects_my_project_description`), and optionally `image` and `featured_on_landing_page`. Put the description under that key in every language file.
