@@ -29,7 +29,8 @@
     "projectsAll": "ls -la projects",
     "quests": "cat sidequests.md",
     "stack": "cat stack.txt",
-    "contact": "./contact.sh"
+    "contact": "./contact.sh",
+    "posts": "ls latest-posts"
   },
   "sections": [
     {

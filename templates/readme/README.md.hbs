@@ -10,14 +10,14 @@
 
 {{{t.home_readme_intro_3}}}
 
-## $ {{data.sectionHeadings.projects}}
+{{#if posts}}
+## $ {{data.sectionHeadings.posts}}
 
-|{{#each projects}} [{{name}}]({{{url}}}) |{{/each}}
-|{{#each projects}}---|{{/each}}
-|{{#each projects}} {{desc}} |{{/each}}
+{{#each posts}}
+- [{{title}}]({{{url}}}) <sub>{{date}}</sub>
+{{/each}}
 
-**[{{t.home_projects_view_more}}]({{{data.siteUrl}}}/{{lang}}/projects/)**
-
+{{/if}}
 ## $ {{data.sectionHeadings.stack}}
 
 {{t.readme_stack_intro}}

@@ -1,19 +1,6 @@
 // Derived values for the templates in this folder. Edit freely; the engine doesn't care what it returns.
-import { readFileSync, readdirSync } from "node:fs";
-
-// A message by key, like `t` in the site.
-const tr = (t, key) => t[key] ?? key;
 
 export default async ({ data, t }) => {
-  // Projects: the same files the site's content collection reads (src/content/projects/*.json).
-  const dir = "src/content/projects";
-  const projects = readdirSync(dir)
-    .filter((f) => f.endsWith(".json"))
-    .sort()
-    .map((f) => JSON.parse(readFileSync(`${dir}/${f}`, "utf8")))
-    .filter((p) => p.featured_on_landing_page)
-    .map((p) => ({ name: p.name, url: p.url, desc: tr(t, p.descriptionTranslationKey) }));
-
   // Coloured boxes (shields.io badges) for the links under the name and for the tools. README only: edit here.
   // [colour, simple-icons logo slug or "", logo colour]
   const box = (label, [color, logo = "", logoColor = "white"]) =>
@@ -62,5 +49,15 @@ export default async ({ data, t }) => {
     return { text, css: `@keyframes f${i}{0%,${on}%{opacity:0}${on}%,${off}%{opacity:1}${off}%,100%{opacity:${off === "100" ? 1 : 0}}}.f${i}{animation:f${i} ${total.toFixed(1)}s steps(1) infinite}` };
   });
 
-  return { projects, contact, stack, typing, boot: list("home_hero_boot") };
+  // Latest dev.to posts (the section hides itself while there are none). Refreshed by the weekly workflow run.
+  const devto = data.socialLinks.find((l) => l.id === "devto");
+  let posts = [];
+  if (devto) {
+    try {
+      const res = await fetch(`https://dev.to/api/articles?per_page=5&username=${devto.href.split("/").filter(Boolean).pop()}`);
+      if (res.ok) posts = (await res.json()).map((a) => ({ title: a.title, url: a.url, date: a.readable_publish_date }));
+    } catch {} // offline or dev.to down: build the README without posts
+  }
+
+  return { posts, contact, stack, typing, boot: list("home_hero_boot") };
 };
