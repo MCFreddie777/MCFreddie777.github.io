@@ -30,7 +30,9 @@
     "quests": "cat sidequests.md",
     "stack": "cat stack.txt",
     "contact": "./contact.sh",
-    "posts": "ls latest-posts"
+    "posts": "ls latest-posts",
+    "notFound": "cd ./{path}",
+    "notFoundHome": "cd ~"
   },
   "sections": [
     {

@@ -12,8 +12,9 @@ interface Props {
   path?: string; // page path inside a language, e.g. "" or "projects/" (used for the language switcher)
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
-const { lang, path = "", title, description } = Astro.props;
+const { lang, path = "", title, description, noindex = false } = Astro.props;
 // SEO: text like the elevAIton landing page: messages seo_home_title and seo_home_description (both optional; the description defaults to home_readme_intro_1-3);
 // inner pages are "<title> | <name>".
 const pageTitle = title ? `${title.charAt(0).toLocaleUpperCase(lang) + title.slice(1)} | ${data.name}` : t("seo_home_title", data.name);
@@ -49,6 +50,7 @@ const person = {
       title={pageTitle}
       description={pageDescription}
       canonical={canonical}
+      noindex={noindex}
       languageAlternates={alternates}
       openGraph={ogImage
         ? {
