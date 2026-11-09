@@ -8,6 +8,8 @@
 
 {{{t.home_readme_intro_2}}}
 
+{{{t.home_readme_intro_3}}}
+
 ## $ {{data.sectionHeadings.projects}}
 
 |{{#each projects}} [{{name}}]({{{url}}}) |{{/each}}
@@ -20,15 +22,12 @@
 
 {{quests}}
 
-<sub>{{{t.home_quests_footnote}}}</sub>
-
 ## $ {{data.sectionHeadings.stack}}
 
 {{stack}}
 
 ## $ {{data.sectionHeadings.contact}}
+
 _{{t.home_contact_heading}}_
 
 {{#each contact}}[{{label}}]({{{href}}}) · {{/each}}[{{t.readme_website}}]({{{data.siteUrl}}})
-
-<p align="center"><sub>{{year}} | {{t.footer}}</sub></p>

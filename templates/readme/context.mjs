@@ -16,8 +16,14 @@ export default async ({ data, t }) => {
     .map((p) => ({ name: p.name, url: p.url, desc: tr(t, p.descriptionTranslationKey) }));
 
   const contact = data.socialLinks.map((l) => ({ href: l.href, label: l.label ?? l.id }));
-  const company = data.companyUrl ? `[${data.company}](${data.companyUrl})` : data.company;
-  const quests = list(t, "home_quests").join(" · ");
+  // HTML link: the heading is an HTML block, where GitHub does not render markdown links.
+  const company = data.companyUrl ? `<a href="${data.companyUrl}">${data.company}</a>` : data.company;
+  // Side quests with an emoji each (README only); the site's trailing "*" footnote marker is dropped here.
+  const emoji = { surfing: "🏄", DJing: "🎧", piano: "🎹", "PC games": "🎮", "3D printing": "🖨️", "graphic design": "🎨", surfskate: "🛹", "soldering stuff": "🔧" };
+  const quests = list(t, "home_quests")
+    .map((q) => q.replace(/\*$/, ""))
+    .map((q) => (emoji[q] ? `${emoji[q]} ${q}` : q))
+    .join(" · ");
   const stack = ["Angular", "TypeScript", "JavaScript", "CSS", "Cypress", "Vue", "Laravel", "Docker", "Git", "Node.js"].join(" · "); // README-only: edit here
 
   return { projects, contact, company, quests, stack, year: new Date().getFullYear() };
