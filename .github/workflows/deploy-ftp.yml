@@ -17,6 +17,9 @@ concurrency:
   group: ftp-deploy
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   ftp:
     runs-on: ubuntu-latest
@@ -31,9 +34,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install
+      - run: npm ci
       - run: npm run build
-      - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      # pinned to a commit: this action gets the FTP password, and a tag can be moved
+      - uses: SamKirkland/FTP-Deploy-Action@8e83cea8672e3fbcbb9fdafff34debf6ae4c5f65 # v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
