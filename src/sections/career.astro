@@ -18,7 +18,7 @@ return `${date.toLocaleDateString(lang, { month: "short" })} ${date.getFullYear(
           <span class="h">{job.data.hash}</span>
           <div>
             <h3>{t(job.data.titleTranslationKey)}</h3>
-            <p class="d">{month(job.data.from)} – {job.data.to ? month(job.data.to) : m.home_career_now()} {!job.data.to && job.data.head && <b>(HEAD)</b>}</p>
+            <p class="d">{month(job.data.from)} – {job.data.to ? month(job.data.to) : m.home_career_now()} {!job.data.to && job.data.head && <b data-nosnippet aria-hidden="true">(HEAD)</b>}</p>
             <p>{t(job.data.descriptionTranslationKey)}</p>
           </div>
         </li>
