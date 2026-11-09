@@ -1,6 +1,8 @@
-<h1 align="center">{{data.name}}</h1>
+# {{data.name}}
 
-<p align="center">{{data.role}} / {{t.home_hero_role_pre}} <b>{{{company}}}</b></p>
+{{data.role}} / {{t.home_hero_role_pre}} <b>{{{company}}}</b>
+
+{{#each contact}}<a href="{{{href}}}"><img src="{{{src}}}" alt="{{label}}"></a> {{/each}}
 
 ## $ {{data.sectionHeadings.readme}}
 
@@ -18,16 +20,8 @@
 
 **[{{t.home_projects_view_more}}]({{{data.siteUrl}}}/{{lang}}/projects/)**
 
-## $ {{data.sectionHeadings.quests}}
-
-{{quests}}
-
 ## $ {{data.sectionHeadings.stack}}
 
-{{stack}}
+{{t.readme_stack_intro}}
 
-## $ {{data.sectionHeadings.contact}}
-
-_{{t.home_contact_heading}}_
-
-{{#each contact}}[{{label}}]({{{href}}}) · {{/each}}[{{t.readme_website}}]({{{data.siteUrl}}})
+{{#each stack}}<img src="{{{src}}}" alt="{{name}}"> {{/each}}
