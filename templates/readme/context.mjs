@@ -38,8 +38,29 @@ export default async ({ data, t }) => {
     ["Docker", ["2496ED", "docker"]],
     ["n8n", ["EA4B71", "n8n"]], ["Claude", ["D97757", "claude"]],
   ].map(([name, style]) => ({ name, src: box(name, style) }));
-  // HTML link: the heading is an HTML block, where GitHub does not render markdown links.
-  const company = data.companyUrl ? `<a href="${data.companyUrl}">${data.company}</a>` : data.company;
 
-  return { projects, contact, company, stack };
+  // assets/hero.svg.hbs: numbered messages as a list, and the typed-name steps.
+  const list = (prefix) =>
+    Object.keys(t)
+      .filter((k) => new RegExp(`^${prefix}_\\d+$`).test(k))
+      .sort((a, b) => a.split("_").pop() - b.split("_").pop())
+      .map((k) => t[k]);
+
+  // Typed name, same steps as the site: the typo version, backspace to the shared start, then the right one.
+  const hero = data.sections.find((s) => s.type === "hero") ?? {};
+  const wrong = hero.nameTypo ?? data.name, right = data.name;
+  let p = 0;
+  while (p < wrong.length && p < right.length && wrong[p] === right[p]) p++;
+  const steps = [];
+  for (let i = 1; i <= wrong.length; i++) steps.push(wrong.slice(0, i));
+  for (let i = wrong.length - 1; i >= p; i--) steps.push(wrong.slice(0, i));
+  for (let i = p + 1; i <= right.length; i++) steps.push(right.slice(0, i));
+  const step = 0.11, total = steps.length * step + 6; // seconds; the full name stays for 6 s before it loops
+  const pct = (s) => ((s / total) * 100).toFixed(2);
+  const typing = steps.map((text, i) => {
+    const on = pct(i * step), off = i === steps.length - 1 ? "100" : pct((i + 1) * step);
+    return { text, css: `@keyframes f${i}{0%,${on}%{opacity:0}${on}%,${off}%{opacity:1}${off}%,100%{opacity:${off === "100" ? 1 : 0}}}.f${i}{animation:f${i} ${total.toFixed(1)}s steps(1) infinite}` };
+  });
+
+  return { projects, contact, stack, typing, boot: list("home_hero_boot") };
 };

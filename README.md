@@ -59,6 +59,8 @@ Handlebars syntax (the `handlebars` package):
 ```
 A path that resolves to nothing prints nothing. Helpers, partials and `{{else}}` work as in Handlebars.
 
+Images can be templates too: `assets/hero.svg.hbs` becomes `assets/hero.svg`. GitHub shows SVGs through `<img>`, so CSS animation works there, but JS and external files (fonts, images) don't.
+
 ## Publish
 1. Put the address visitors use in `siteUrl` in `content/data.json`. In this repo's Settings → Secrets and variables → Actions, add the secrets `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` and, if the web folder is not `www/`, the variable `FTP_DIR` (ending with `/`). `.github/workflows/deploy-ftp.yml` builds the site and uploads `dist/`; files on the hosting that are not part of the build (other folders, PHP apps) are never deleted.
 2. Create the profile repo `<your-username>/<your-username>` (public).
