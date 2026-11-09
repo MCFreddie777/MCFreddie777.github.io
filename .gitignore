@@ -8,3 +8,7 @@ dist-readme
 CLAUDE.local.md
 CONTENT.md
 STYLE.md
+
+# editor and agent settings
+.idea/
+.claude/
