@@ -1,6 +1,6 @@
 name: Deploy to FTP hosting
 
-# Optional: builds the site and uploads dist/ to any hosting that speaks FTP/FTPS (WEDOS, etc.).
+# Builds the site and uploads dist/ to any hosting that speaks FTP/FTPS (WEDOS, etc.). This is the site's deploy.
 # Set these in Settings -> Secrets and variables -> Actions. Nothing is stored in the repo.
 #   secret   FTP_SERVER     host name, e.g. 123456.w78.wedos.net
 #   secret   FTP_USERNAME

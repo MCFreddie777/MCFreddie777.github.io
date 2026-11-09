@@ -1,7 +1,7 @@
 # Personal site + profile README template
 
 Write your content once and get two things:
-- a static personal site (Astro) on GitHub Pages, in as many languages as you like, and
+- a static personal site (Astro) on your own web hosting (uploaded over FTP/FTPS), in as many languages as you like, and
 - your GitHub profile README, generated from the same data and pushed to your profile repo by a GitHub Action.
 
 Nothing about layout, sections or content shape is fixed. Put any key in the data, any text in the translations, and show it on the site, in the README, or both.
@@ -60,11 +60,9 @@ Handlebars syntax (the `handlebars` package):
 A path that resolves to nothing prints nothing. Helpers, partials and `{{else}}` work as in Handlebars.
 
 ## Publish
-1. Name this repo `<your-username>.github.io`. Settings → Pages → Source: **GitHub Actions**. Set a custom domain there if you have one, and put it in `siteUrl` in `content/data.json`.
+1. Put the address visitors use in `siteUrl` in `content/data.json`. In this repo's Settings → Secrets and variables → Actions, add the secrets `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` and, if the web folder is not `www/`, the variable `FTP_DIR` (ending with `/`). `.github/workflows/deploy-ftp.yml` builds the site and uploads `dist/`; files on the hosting that are not part of the build (other folders, PHP apps) are never deleted.
 2. Create the profile repo `<your-username>/<your-username>` (public).
 3. Create a fine-grained token limited to the profile repo with "Contents: read and write". Save it in this repo as the Actions secret `PROFILE_REPO_TOKEN`. Never commit it.
 4. Push to `main`: the site deploys, and the README is generated and pushed to the profile repo (also weekly, to refresh fetched data).
-
-**Your own hosting (FTP/FTPS) instead of, or next to, GitHub Pages:** `.github/workflows/deploy-ftp.yml` builds the site and uploads `dist/`. Add the Actions secrets `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` and, if the web folder is not `www/`, the variable `FTP_DIR` (ending with `/`). Files that are not part of the build are never deleted. Set `siteUrl` in `content/data.json` to the address visitors use.
 
 The profile repo defaults to `<owner>/<owner>`; set the Actions variable `PROFILE_REPO` to use another. To publish a non-English README, add the language argument to the `build:readme` step in `.github/workflows/readme.yml`.

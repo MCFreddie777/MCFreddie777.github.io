@@ -8,7 +8,7 @@ const { siteUrl } = JSON.parse(readFileSync("./content/data.json", "utf8"));
 // Languages live in one place: project.inlang/settings.json (Paraglide's project file).
 const { baseLocale, locales } = JSON.parse(readFileSync("./project.inlang/settings.json", "utf8"));
 
-// Custom domain: set it in the repo's Pages settings (an Actions deploy ignores a CNAME file).
+// siteUrl is the address visitors use: canonical links, hreflang, sitemap and share previews are built from it.
 export default defineConfig({
   site: siteUrl,
   trailingSlash: "always",

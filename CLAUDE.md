@@ -22,7 +22,7 @@ Usage and concepts for humans are in README.md; don't duplicate them here.
 | `src/pages/index.astro`, `src/pages/robots.txt.ts` | root `/`: Paraglide picks the language in the browser (cookie from the switcher, then browser languages, then default) and redirects; robots.txt points at the sitemap |
 | `templates/readme/` | README templates (`*.hbs` rendered, other files copied as-is) + optional `context.mjs` for derived/fetched values |
 | `scripts/build-readme.mjs` | renders `templates/readme/` to `dist-readme/` with `{ data, t, lang, langs, ...context.mjs }`; language as argument: `npm run build:readme -- <lang>` |
-| `.github/workflows/` | Pages deploy, optional FTP deploy (secrets `FTP_*`), README publish to the profile repo |
+| `.github/workflows/` | FTP deploy to the web hosting (secrets `FTP_*`, variable `FTP_DIR`); README publish to the profile repo |
 
 ## Rules
 - The generator is content-agnostic: no field names in `scripts/`; structure lives in templates, values in `content/` and `messages/`.
