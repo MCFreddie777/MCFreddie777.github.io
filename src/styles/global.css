@@ -202,3 +202,5 @@ html{scroll-padding-top:6rem}
 @media(max-width:640px){.lang a{padding:.4rem .9rem;font-size:.85rem}}
 .cover{width:96px;height:96px;object-fit:contain;margin:.2rem 0}
 .fine p{margin:0}
+/* footer at the bottom on short pages */
+body{min-height:100dvh;display:flex;flex-direction:column}main{flex:1 0 auto}

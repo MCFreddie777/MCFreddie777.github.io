@@ -1,0 +1,25 @@
+---
+// 404. GitHub Pages serves only the root /404.html, so this page uses the default language.
+// The visited path is filled in by the browser ("{path}" in the command, the empty span in the error).
+import Base from "../layouts/Base.astro";
+import Window from "../components/Window.astro";
+import { data, defaultLang, m } from "../lib/content";
+
+const lang = defaultLang;
+---
+
+<Base lang={lang} title={m.notfound_title()} noindex>
+  <Window cmd={data.sectionHeadings.notFound} chrome>
+    <h1 class="out">{m.notfound_error()}: ./<span id="path"></span></h1>
+    <p style="margin-top:3.25rem"><a class="btn pri mono" href={`/${lang}/`}>{data.sectionHeadings.notFoundHome}</a></p>
+  </Window>
+  <!-- runs before the site script types the command -->
+  <script is:inline>
+    var p = decodeURI(location.pathname.slice(1));
+    document.getElementById("path").textContent = p;
+    document.querySelectorAll("[data-cmd], .cmd .c").forEach(function (el) {
+      if (el.dataset.cmd) el.dataset.cmd = el.dataset.cmd.replace("{path}", p);
+      el.textContent = el.textContent.replace("{path}", p);
+    });
+  </script>
+</Base>

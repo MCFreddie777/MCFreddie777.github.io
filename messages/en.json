@@ -40,5 +40,7 @@
   "navbar_language": "Language",
   "home_career_now": "now",
   "home_egg_output": "frantisek is not in the sudoers file. This incident will be reported (to [LinkedIn](link:linkedin), where you can ask nicely).",
-  "seo_og_locale": "en_US"
+  "seo_og_locale": "en_US",
+  "notfound_title": "page not found",
+  "notfound_error": "no such file or directory"
 }
