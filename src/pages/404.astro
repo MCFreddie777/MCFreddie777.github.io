@@ -11,7 +11,7 @@ const lang = defaultLang;
 <Base lang={lang} title={m.notfound_title()} noindex>
   <Window cmd={data.sectionHeadings.notFound} chrome>
     <h1 class="out">{m.notfound_error()}: ./<span id="path"></span></h1>
-    <p style="margin-top:3.25rem"><a class="btn pri mono" href={`/${lang}/`}>{data.sectionHeadings.notFoundHome}</a></p>
+    <p class="home"><a class="btn pri mono" href={`/${lang}/`}>{data.sectionHeadings.notFoundHome}</a></p>
   </Window>
   <!-- runs before the site script types the command -->
   <script is:inline>

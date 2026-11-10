@@ -204,3 +204,5 @@ html{scroll-padding-top:6rem}
 .fine p{margin:0}
 /* footer at the bottom on short pages */
 body{min-height:100dvh;display:flex;flex-direction:column}main{flex:1 0 auto}
+/* 404: space above the "cd ~" button (a class, not inline: the slide-in animation clears inline styles) */
+.home{margin-top:3rem}
