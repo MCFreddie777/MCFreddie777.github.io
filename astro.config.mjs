@@ -17,9 +17,9 @@ export default defineConfig({
       paraglideVitePlugin({
         project: "./project.inlang",
         outdir: "./src/paraglide",
-        // url: the page's own language; cookie: the visitor's last pick; globalVariable: set per page during the
-        // build (src/middleware.ts); preferredLanguage: the browser's languages (browser only, used on "/").
-        strategy: ["url", "cookie", "globalVariable", "preferredLanguage", "baseLocale"],
+        // url: the page's own language; cookie: the visitor's last pick (read by the server's .htaccess on "/");
+        // globalVariable: set per page during the build (src/middleware.ts).
+        strategy: ["url", "cookie", "globalVariable", "baseLocale"],
         urlPatterns: [
           { pattern: "/:path(.*)?", localized: locales.map((l) => [l, `/${l}/:path(.*)?`]) },
         ],
@@ -29,7 +29,7 @@ export default defineConfig({
   i18n: {
     locales,
     defaultLocale: baseLocale,
-    routing: { prefixDefaultLocale: true, redirectToDefaultLocale: false }, // "/" is src/pages/index.astro
+    routing: { prefixDefaultLocale: true, redirectToDefaultLocale: true },
   },
   integrations: [
     icon(),
